@@ -1,0 +1,197 @@
+name: Tests
+
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [ master, staging, sprint* ]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  golangci:
+    name: "lint"
+    runs-on: [ arc-runner ]
+    steps:
+      - name: Install Packages
+        run: |
+          sudo apt update -y
+          sudo apt -y install build-essential nghttp2 libnghttp2-dev libssl-dev wget
+
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.22.5
+
+      - uses: actions/checkout@v3
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.57.1
+          skip-build-cache: true
+          skip-pkg-cache: true
+          only-new-issues: true
+
+  go-test:
+    runs-on: [ arc-runner ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Packages
+        run: |
+          sudo apt update -y
+          sudo apt -y install build-essential nghttp2 libnghttp2-dev libssl-dev wget
+
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.22.5
+
+      - name: Install deps
+        run: |
+          sudo apt-get update -y && sudo apt-get install build-essential wget containerd docker.io -y
+
+      - name: Run Unit Test
+        run: make gosdk-test
+
+  system-test:
+    needs: go-test
+    runs-on: [ tests-suite ]
+    steps:
+      - name: "Get current PR"
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          github-token: ${{ github.token }}
+
+      - name: "Set PR status as pending"
+        uses: 0chain/actions/set-pr-status@master
+        if: steps.findPr.outputs.number
+        with:
+          pr_number: ${{ steps.findPr.outputs.pr }}
+          description: "System tests running with default config..."
+          state: "pending"
+          repository: ${{ github.repository }}
+          status_name: "0Chain System Tests"
+          target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          github_token: ${{ github.token }}
+
+      - name: "Setup"
+        run: |
+          echo "CURRENT_BRANCH_HEAD=$(echo $(([ -z '${{ github.event.pull_request.head.sha }}' ] && echo  $GITHUB_SHA) || echo '${{ github.event.pull_request.head.sha }}'))" >> $GITHUB_ENV
+          echo "NETWORK_URL=$(echo dev-${RUNNER_NAME:(-1)}.devnet-0chain.net)" >> $GITHUB_ENV
+          echo "RUNNER_NUMBER=${RUNNER_NAME:(-1)}" >> $GITHUB_ENV
+
+      - name: 'Setup jq'
+        uses: dcarbone/install-jq-action@v2.1.0
+        with:
+            version: '1.7'
+            force: 'false'
+                
+      - name: "Create Tenderly virtual testnet"
+        run: |
+          echo "TENDERLY_CREATION_INFO=$(curl -X POST \
+           -H "x-access-key: ${{ secrets.TENDERLY_SECRET }}" \
+           -H "Content-Type: application/json" \
+           -d '{"slug":"mainnet-dev-${{ env.RUNNER_NUMBER }}-${{ github.run_id }}","displayName":"mainnet-dev-${{ env.RUNNER_NUMBER }}-${{ github.run_id }}","description":"","visibility":"TEAM","tags":{"purpose":"development"},"networkConfig":{"networkId":"1","blockNumber":"18512782","chainConfig":{"chainId":"1"},"baseFeePerGas":"1"},"explorerConfig":{"enabled":false,"verificationVisibility":"bytecode"},"syncState":false}' \
+           https://api.tenderly.co/api/v1/account/zus_network/project/project/testnet/container)" >> $GITHUB_ENV
+
+      - name: "Parse Tenderly virtual testnet creation transaction result"
+        run: |
+          echo "TENDERLY_VIRTUAL_TESTNET_ID=$(echo '${{ env.TENDERLY_CREATION_INFO }}' | jq -r '.container.id')" >> $GITHUB_ENV
+          echo "TENDERLY_VIRTUAL_TESTNET_RPC_ID=$(echo '${{ env.TENDERLY_CREATION_INFO }}' | jq -r '.container.connectivityConfig.endpoints[0].id')" >> $GITHUB_ENV
+
+      - name: "Deploy 0Chain"
+        uses: 0chain/actions/deploy-0chain@master
+        with:
+          repo_snapshots_branch: "<CURRENT BRANCH WITH FALLBACK TO CURRENT_SPRINT>"
+          kube_config: ${{ secrets[format('DEV{0}KC', env.RUNNER_NUMBER)] }}
+          teardown_condition: "TESTS_PASSED"
+          custom_go_sdk_version: ${{ env.CURRENT_BRANCH_HEAD }}
+          SUBGRAPH_API_URL: ${{ secrets.SUBGRAPH_API_URL }}
+          TENDERLY_VIRTUAL_TESTNET_RPC_ID: ${{ env.TENDERLY_VIRTUAL_TESTNET_RPC_ID }}
+          graphnode_sc: ${{ secrets.GRAPHNODE_SC }}
+          graphnode_network: ${{ secrets.GRAPHNODE_NETWORK }}
+          graphnode_ethereum_node_url: https://virtual.mainnet.rpc.tenderly.co/${{ env.TENDERLY_VIRTUAL_TESTNET_RPC_ID }}
+          svc_account_secret: ${{ secrets.SVC_ACCOUNT_SECRET }}
+
+      - name: "Run System tests"
+        uses: 0chain/actions/run-system-tests@master
+        with:
+          repo_snapshots_branch: "<CURRENT BRANCH WITH FALLBACK TO CURRENT_SPRINT>"
+          custom_go_sdk_version: ${{ env.CURRENT_BRANCH_HEAD }}
+          network: ${{ env.NETWORK_URL }}
+          svc_account_secret: ${{ secrets.SVC_ACCOUNT_SECRET }}
+          deploy_report_page: false
+          archive_results: true
+          run_flaky_tests: false
+          retry_failures: true
+          run_frontend_tests: true
+          run_smoke_tests: ${{ github.ref != 'refs/heads/staging' && github.base_ref != 'staging' && github.ref != 'refs/heads/master' && github.base_ref != 'master' }}
+          TENDERLY_VIRTUAL_TESTNET_RPC_ID: ${{ env.TENDERLY_VIRTUAL_TESTNET_RPC_ID }}
+          DEVOPS_CHANNEL_WEBHOOK_URL: ${{ secrets.DEVOPS_CHANNEL_WEBHOOK_URL }}
+          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+
+      - name: "Remove Tenderly virtual testnet"
+        if: always()
+        run: |
+          curl -X DELETE \
+            -H "x-access-key: ${{ secrets.TENDERLY_SECRET }}" \
+            -H "Content-Type: application/json" \
+            https://api.tenderly.co/api/v1/account/zus_network/project/project/testnet/container/${{ env.TENDERLY_VIRTUAL_TESTNET_ID }}
+
+      - name: "Set PR status as ${{ job.status }}"
+        if: ${{ (success() || failure()) && steps.findPr.outputs.number }}
+        uses: 0chain/actions/set-pr-status@master
+        with:
+          pr_number: ${{ steps.findPr.outputs.pr }}
+          description: "System tests with default config ${{ job.status }}"
+          state: ${{ job.status }}
+          repository: ${{ github.repository }}
+          status_name: "0Chain System Tests"
+          target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          github_token: ${{ github.token }}
+
+  wasm-test:
+    runs-on: [self-hosted, build]
+    env:
+      GOOS: js
+      GOARCH: wasm
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.22.5
+      
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20.11.1
+
+      - name: Setup PATH for wasm
+        run: echo "${{env.GOROOT}}/misc/wasm" >> $GITHUB_PATH
+
+      - name: Install deps
+        run: |
+          # codename=$(lsb_release -c | awk '{print $2}')
+          # echo "deb http://mirror.genesisadaptive.com/ubuntu/ $codename main" > ./gitaction.list
+          # echo "deb http://mirror.math.princeton.edu/pub/ubuntu/ $codename main" ./gitaction.list
+          # echo "deb http://mirror.pit.teraswitch.com/ubuntu/ $codename main" >> ./gitaction.list
+          # sudo mv -f ./gitaction.list /etc/apt/sources.list.d/
+
+          sudo apt-get update -y && sudo apt-get install build-essential wget -y
+
+      - name: Install herumi's libraries
+        run: sudo make install-herumi-ubuntu
+
+      - name: Run wasm-test
+        run: LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH make wasm-test
+
