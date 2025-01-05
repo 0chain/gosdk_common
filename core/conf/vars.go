@@ -11,6 +11,7 @@ var (
 	cfg     *Config
 	onceCfg sync.Once
 	//  global sharders and miners
+	//TODO: remove as it is not used
 	network *Network
 )
 
@@ -29,7 +30,7 @@ var (
 	ErrConfigNotInitialized = errors.New("[conf]conf.cfg is not initialized. please initialize it by conf.InitClientConfig")
 )
 
-// GetClientConfig get global client config from the SDK configuration
+// GetClientConfig get global client config
 func GetClientConfig() (*Config, error) {
 	if cfg == nil {
 		return nil, ErrConfigNotInitialized
@@ -38,19 +39,27 @@ func GetClientConfig() (*Config, error) {
 	return cfg, nil
 }
 
-// InitClientConfig set global client SDK config
+// InitClientConfig set global client config
 func InitClientConfig(c *Config) {
 	onceCfg.Do(func() {
-		sharderConsensous := c.SharderConsensous
-		if sharderConsensous < 1 {
-			sharderConsensous = DefaultSharderConsensous
-		}
 		cfg = c
-		cfg.SharderConsensous = sharderConsensous
+		if cfg.SharderConsensous < 1 {
+			cfg.SharderConsensous = DefaultSharderConsensous
+		}
+		if cfg.MaxTxnQuery < 1 {
+			cfg.MaxTxnQuery = DefaultMaxTxnQuery
+		}
+		if cfg.QuerySleepTime < 1 {
+			cfg.QuerySleepTime = DefaultQuerySleepTime
+		}
+		if cfg.MinSubmit < 1 {
+			cfg.MinSubmit = DefaultMinSubmit
+		}
 	})
 }
 
-// InitChainNetwork set global chain network for the SDK given its configuration
+// Deprecated: Use client.Init() function. To normalize urls, use network.NormalizeURLs() method
+// // InitChainNetwork set global chain network
 func InitChainNetwork(n *Network) {
 	if n == nil {
 		return

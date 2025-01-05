@@ -2,22 +2,22 @@ package constants
 
 const (
 	// FileOperationInsert method name of add new file
-	FileOperationInsert = "insert"
+	FileOperationInsert    = "insert"
 
 	// FileOperationDelete method name of delete file
-	FileOperationDelete = "delete"
+	FileOperationDelete    = "delete"
 
 	// FileOperationUpdate method name of update file
-	FileOperationUpdate = "update"
+	FileOperationUpdate    = "update"
 
 	// FileOperationRename method name of rename file
-	FileOperationRename = "rename"
+	FileOperationRename    = "rename"
 
 	// FileOperationCopy method name of copy file
-	FileOperationCopy = "copy"
+	FileOperationCopy      = "copy"
 
 	// FileOperationMove method name of move file
-	FileOperationMove = "move"
+	FileOperationMove      = "move"
 
 	// FileOperationCreateDir method name of create directory
 	FileOperationCreateDir = "createdir"

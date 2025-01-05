@@ -16,15 +16,15 @@ import (
 
 const (
 	// DefaultMinSubmit default value for min_submit
-	DefaultMinSubmit = 10
+	DefaultMinSubmit = 20
 	// DefaultMinConfirmation default value for min_confirmation
 	DefaultMinConfirmation = 10
 	// DefaultMaxTxnQuery default value for max_txn_query
-	DefaultMaxTxnQuery = 5
+	DefaultMaxTxnQuery = 10
 	// DefaultConfirmationChainLength default value for confirmation_chain_length
 	DefaultConfirmationChainLength = 3
 	// DefaultQuerySleepTime default value for query_sleep_time
-	DefaultQuerySleepTime = 5
+	DefaultQuerySleepTime = 1
 	// DefaultSharderConsensous default consensous to take make SCRestAPI calls
 	DefaultSharderConsensous = 3
 )
@@ -46,8 +46,6 @@ const (
 type Config struct {
 	// BlockWorker the url of 0dns's network api
 	BlockWorker string `json:"block_worker,omitempty"`
-	// PreferredBlobbers preferred blobbers on new allocation
-	PreferredBlobbers []string `json:"preferred_blobbers,omitempty"`
 
 	// MinSubmit mininal submit from blobber
 	MinSubmit int `json:"min_submit,omitempty"`
@@ -169,7 +167,6 @@ func LoadConfig(v Reader) (Config, error) {
 	}
 
 	cfg.BlockWorker = blockWorker
-	cfg.PreferredBlobbers = v.GetStringSlice("preferred_blobbers")
 	cfg.MinSubmit = minSubmit
 	cfg.MinConfirmation = minCfm
 	cfg.ConfirmationChainLength = CfmChainLength
@@ -179,7 +176,7 @@ func LoadConfig(v Reader) (Config, error) {
 
 	cfg.SignatureScheme = v.GetString("signature_scheme")
 	cfg.ChainID = v.GetString("chain_id")
-	cfg.ZauthServer = v.GetString("zauth.server")
+	cfg.ZauthServer = v.GetString("zauth_server")
 
 	return cfg, nil
 }

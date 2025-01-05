@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+<head>
+  <!-- for zcn.wasm-->
+  <script src="https://cdn.jsdelivr.net/gh/herumi/bls-wasm@v1.1.1/browser/bls.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/golang/go@go1.21.5/misc/wasm/wasm_exec.js"></script>
+  <script src="zcn.js"></script>
+
+
+  <!-- for demo -->
+  <script src="dom.js"></script>
+
+  <!-- for player.js -->
+  <script src="https://cdn.jsdelivr.net/npm/mux.js@6.3.0/dist/mux.js"></script>
+  <script src="EBML.js"></script>
+  <script src="player.js"></script>
+
+</head>
+
+<body>
+
+  <h2>please download zcn.wasm from https://github.com/0chain/gosdk/releases/latest first</h2>
+
+  <fieldset>
+    <legend>logging</legend>
+    <span>
+      <button id="btnShowLogs">Show</button>
+      <button id="btnHideLogs">Hide</button>
+    </span>
+    <br>
+    <textarea id="logs" rows="10" cols="100">
+
+  </textarea>
+  </fieldset>
+
+  <fieldset>
+    <legend>Wallet</legend>
+    <label for="clientId"> ClientID </label> <input id="clientId" name="clientId" style="width: 600px;"
+      value="ab5b8ab19abe574d92238e0a5dc0c2abd53614cd12cab6b09576fab2a0f64a83" /><br>
+    <label for="privateKey">PrivateKey</label> <input id="privateKey" name="privateKey" style="width: 600px;"
+      value="0c2cb85c8c33b3cc35dc12b4754e61ae9488bba857982c382caa461ecac19d19" /><br>
+    <label for="publicKey"> PublicKey</label> <input id="publicKey" name="publicKey" style="width: 600px;"
+      value="d430b1b33eab43bd09886e6125e246600e36e3f88d658d00bf836aa564251e2364bccbfb18f1cb1b5fa4d96ba602b59bc009e6e0223b6a8ebdafc14822b78d23" /><br>
+    <label for="mnemonic"> Mnemonic</label> <input id="mnemonic" name="mnemonic" style="width: 600px;"
+      value="grace fiscal menu squeeze certain drum ostrich lunar ugly remember cousin observe oxygen brisk toward notable shoot cushion develop marble open aspect couch noise" /><br>
+    <label for="peerPublicKey"> PeerPublicKey</label> <input id="peerPublicKey" name="peerPublicKey" style="width: 600px;"
+      value="" /><br>
+    <label for="isSplit"> IsSplit</label> <input id="isSplit" name="isSplit" style="width: 600px;"
+      value="false" /><br>
+
+    <button id="btnSetWallet">Change Wallet</button>
+    <button id="btnSendMeTokens">Send Me Tokens</button>
+    <button id="btnSendTokensToOtherWallet">Send Tokens to Other Wallet</button>
+    <button id="btnGetBalance">Get Balance</button>
+
+    <button id="btnGetUSDRate">Get USD Rate</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>Sharing</legend>
+    <label for="authTicket"> AuthTicket </label> <input id="authTicket" name="authTicket" style="width: 600px;"
+      value="eyJjbGllbnRfaWQiOiJhNGM1M2JmMjQ4YzYzNGVhNDgzYTk4Y2JhYTZiNzY3MjI2ZjUwNDUwNmIyOTkzODRiMzBmMmMwMGE1MmYwODUxIiwib3duZXJfaWQiOiIzMDc2NGJjYmE3MzIxNmI2N2MzNmIwNWExN2I0ZGQwNzZiZmRjNWJiMGVkODQ4NTZmMjc2MjIxODhjMzc3MjY5IiwiYWxsb2NhdGlvbl9pZCI6IjJmMjc3NDJlODYxN2YyY2U1MTk2OWFhNWQ1ZDAyY2MyZDg1NzQ1MzQ5MGVkZjBlODYzNmE0OTdjYjRmNTY3MWUiLCJmaWxlX3BhdGhfaGFzaCI6IjVhYTE2NzkyZDQ1YWMwMzI0ZTExZjc0Y2E5N2M0NDk3Zjc2ZmIxM2ZkN2ExMjIzMjc4NzQ4ZjY4OGIyNzU2OGUiLCJhY3R1YWxfZmlsZV9oYXNoIjoiYjQxZTFmZGI2YThlNzM0MmNkMzk5ZjY3MWFiYWRkM2MyN2QzZDQ0YjdmZGM0OGU3Mzc1ZTI4ZTM3MTI2NWY3YiIsImZpbGVfbmFtZSI6InJ0eDA5MDIwMDIxMnAucGRmIiwicmVmZXJlbmNlX3R5cGUiOiJmIiwiZXhwaXJhdGlvbiI6MTY4ODY4OTcyMTcxNCwidGltZXN0YW1wIjoxNjg3MDAyNzE2LCJlbmNyeXB0ZWQiOnRydWUsInNpZ25hdHVyZSI6IjIyOWUyY2FkNTU5YzEwMGU4MTVhNjk2ZTQ5YTU3ZTUyNGU5ZmQ1YmZmZTRjYjAyY2I0MDM1NGY0OTQ1YzY5MWYifQ==" /><br>
+    <button id="decodeAuthticket">DecodeAuthTicket</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>Allocations</legend>
+
+    <span>
+      <button id="btnListAllocations">List</button>
+      <button id="btnCreateAllocation">Create</button>
+      <button id="btnGetAllocation">Get</button>
+      <button id="btnCreateFreeAlloc">CreateFreeallocation</button>
+      <button id="btnGetAllocationMinLock">AllocationMinLock</button>
+      <button id="btnGetUpdateAllocationMinLock">UpdateAllocationMinLock</button>
+      <button id="btnRemoteFileMap">RemoteFileMap</button>
+      <button id="btnAddReplaceBlobber">AddReplaceBlobber</button>
+      <button id="makeSCRestAPICall">makeSCRestAPICall</button>
+    </span>
+
+    <br>
+
+    <div id="listAllocations">
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Blobbers</legend>
+
+    <span>
+      <button id="btnListBlobbers">List</button>
+      <button id="btnListBlobberSettings">Get</button>
+      <button id="updateBlobberSettings">Update</button>
+    </span>
+
+    <br>
+
+    <div id="listBlobbers">
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Files</legend>
+    <button id="btnListFiles">List</button>
+    <span><input id="inputSelectedFile" type="file" multiple /> <button id="btnUploadFile">Upload</button> </span>
+    <button id="btnUploadEncryptFile">EncryptedUpload</button> </span>
+    [ <button id="btnDownloadFile">Download</button> | <button id="btnDownloadShared">Download with AuthTicket</button>
+    | <button id="btnMultiDownload">MultiDownload</button>
+    ]
+    <button id="btnViewFile">View</button>
+    <button id="btnGetFileStats">GetFileStats</button>
+    <button id="btnDelete">Delete</button>
+    <button id="btnShare">Share</button>
+    <button id="btnGetContainers">getcontainers</button>
+    <button id="btnUpdateContainer">updatecontainer</button>
+    <button id="btnSearchContainer">searchcontainer</button>
+    <button id="btnAllocationRepair">Repair</button>
+    <button id="btnMultiOps">MultiOperation</button>
+    <button id="createDir">createDir</button>
+
+    <br>
+
+    <div id="listFiles">
+    </div>
+
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Output</legend>
+    <pre id="txtOutput" style="font-size: 20px; font-weight: bold;">
+    </pre>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Media WebPlayer</legend>
+
+    <div id="container">
+      <video id='player' preload="metadata" controls></video>
+    </div>
+    <div className="controls">
+      [ <button id="btnPlay">Play</button> | <button id="btnPlayShared">Play with auth ticket</button> ]
+      <button id="btnPause">Pause</button>
+      <button id="btnStop">Stop</button>
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Image Viewer</legend>
+    <img id="viewer" src="image.png" width="600" />
+  </fieldset>
+
+  <fieldset>
+    <legend>Split Key</legend>
+    <span>
+      <button id="btnSetWalletInfo">SetWalletInfo</button>
+      <button id="btnSetAuthUrl">SetAuthUrl</button>
+      <button id="btnRegAuth">regAuth</button>
+    </span>
+    <br>
+    <div id="splitKey">
+    </div>
+  </fieldset>
+  <script>
+    window.downloadCallback = function (totalBytes, completedBytes, error) {
+      console.log("download: " + completedBytes + "/" + totalBytes + " err:" + error)
+    }
+
+    const getWallet = () => {
+      const clientID = document.getElementById('clientId').value;
+      const publicKey = document.getElementById('publicKey').value;
+      const peerPublicKey = document.getElementById('peerPublicKey').value;
+      const privateKey = document.getElementById('privateKey').value;
+      const mnemonic = document.getElementById('mnemonic').value;
+      const isSplit = document.getElementById('isSplit').value;
+      return {
+        clientID, peerPublicKey, publicKey, privateKey, mnemonic, isSplit
+      }
+    }
+
+    // get active blobbers from network
+    async function getBlobbersFromNetwork() {
+      const GET_BLOBBERS = `/v1/screst/6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712d7/getblobbers`
+      const randomsharder = " https://dev1.zus.network/sharder01" // todo: get this randomly from network
+      url = randomsharder + GET_BLOBBERS
+      let response = await fetch(url);
+      let data = await response.json();
+      return data;
+    }
+
+    async function getBlobberDetails(blobberID) {
+      const GET_BLOBBER = `/v1/screst/6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712d7/getBlobber?blobber_id=`
+      const randomsharder = " https://dev1.zus.network/sharder01" // todo: get this randomly from network
+      url = randomsharder + GET_BLOBBER + blobberID
+      let response = await fetch(url);
+      let data = await response.json();
+      return data;
+    }
+
+    const networkConfig = {
+      chainId: '0afc093ffb509f059c55478bc1a60351cef7b4e9c008a53a6cc8241ca8617dfe',
+      signatureScheme: 'bls0chain',
+      minConfirmation: 10,
+      minSubmit: 10,
+      confirmationChainLength: 3,
+    }
+
+    const query = new URLSearchParams(window.location.search);
+
+    let network = query.get('network')
+    if (!network || network == 'undefined') {
+      network = "dev.zus.network"
+    }
+
+    const blockWorker = 'https://' + network + '/dns';
+    const config = [
+      networkConfig.chainId,
+      blockWorker,
+      networkConfig.signatureScheme,
+      networkConfig.minConfirmation,
+      networkConfig.minSubmit,
+      networkConfig.confirmationChainLength,
+      'https://0box.' + network, //zboxHost
+      'vult', //zboxAppType
+      3,
+      false,
+    ]
+
+    const bls = window.bls
+    let goWasm;
+    createWasm().then(async wasm => {
+      await wasm.sdk.init(...config)
+      await bls.init(bls.BN254)
+
+      const { clientID, publicKey, privateKey, mnemonic } = getWallet();
+
+      await wasm.setWallet(bls, clientID, publicKey, "", privateKey, publicKey, mnemonic, false);
+
+      goWasm = wasm
+    }).catch(e => {
+      console.log(e)
+    })
+
+    onClick('btnSetWallet', async () => {
+      const { clientID, publicKey, privateKey, peerPublicKey, mnemonic, isSplit } = getWallet();
+
+      const isSplitRaw = isSplit == "true" ? true : false
+
+      const newConfig = [
+        networkConfig.chainId,
+        blockWorker,
+        networkConfig.signatureScheme,
+        networkConfig.minConfirmation,
+        networkConfig.minSubmit,
+        networkConfig.confirmationChainLength,
+        'https://0box.' + network, //zboxHost
+        'vult', //zboxAppType
+        3,
+        isSplitRaw,
+      ]
+
+      await goWasm.sdk.init(...newConfig);
+
+      await goWasm.setWallet(bls, clientID, publicKey, peerPublicKey, privateKey, publicKey, mnemonic, isSplitRaw);
+    })
+
+    onClick('btnSendMeTokens', async () => {
+      await goWasm.sdk.faucet("pour", JSON.stringify("{Pay day}"), 10)
+    })
+
+    onClick('btnSendTokensToOtherWallet', async () => {
+      try {
+        const output = await goWasm.sdk.send(
+          "5ad6e4d206d853833e96ff5c833369e567d2ef41ae1d5093141e1f90f1e8dcb0",
+          10000000000,
+          0
+        )
+        console.log("successfully sent with txn hash: ", output)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnGetBalance', async () => {
+      const { clientID } = getWallet()
+      const wallet = await goWasm.sdk.getWalletBalance(clientID)
+      txtOutput.innerHTML = JSON.stringify(wallet, null, 2)
+    })
+
+    onClick('btnCreateFreeAlloc', async () => {
+      var token = prompt("freeallocation token: ");
+      try {
+        const alloc = await goWasm.sdk.createfreeallocation(token)
+        console.log("create freeallocation with ID: ", alloc)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    let allocations = []
+    let blobbers = []
+    let files = []
+
+    const bindAllocations = () => setHtml("listAllocations", allocations.map(a => `<input type="radio"  name="selectedAllocation" value="${a.id}"><label for="${a.id}">${a.id}</label><br>`).join(""))
+    const getSelectedAllocation = () => [...document.getElementsByName('selectedAllocation')].filter(it => it.checked).map(it => it.value).find(it => it != "");
+
+    const bindFiles = () => setHtml('listFiles', files.map(f => `<input type="radio" name="selectedFile" value="${f.path}"><label for="${f.path}">[${f.type}]${f.path}</label><br>`).join(""))
+    const getSelectedFile = () => [...document.getElementsByName('selectedFile')].filter(it => it.checked).map(it => it.value).find(it => it != "");
+
+    const bindBlobbers = () => setHtml("listBlobbers", blobbers.map(a => `<input type="radio"  name="selectedBlobbers" value="${a.id}"><label for="${a.id}">${a.id}</label><br>`).join(""))
+    const getSelectedBlobbers = () => [...document.getElementsByName('selectedBlobbers')].filter(it => it.checked).map(it => it.value).find(it => it != "");
+
+    onClick('btnCreateAllocation', async () => {
+
+      const expiry = new Date()
+      expiry.setDate(expiry.getDate() + 300)
+
+      //name string, datashards, parityshards int, size, expiry int64,minReadPrice, maxReadPrice, minWritePrice, maxWritePrice int64, lock int64,preferredBlobberIds []string
+      const config = {
+        datashards: 2,
+        parityshards: 2,
+        size: 2 * 1073741824,
+        minReadPrice: 0,
+        maxReadPrice: 184467440737095516,
+        minWritePrice: 0,
+        maxWritePrice: 184467440737095516,
+        lock: 18800000000
+      }
+      try {
+        const allocation = await goWasm.sdk.createAllocation(config.datashards, config.parityshards, config.size, config.minReadPrice, config.maxReadPrice, config.minWritePrice, config.maxWritePrice,
+          config.lock, [], [], false)
+
+        console.log(allocation)
+        allocations = await goWasm.sdk.listAllocations()
+        bindAllocations()
+      } catch (e) {
+        alert(e)
+      }
+
+    })
+
+    onClick('btnListAllocations', async () => {
+      allocations = await goWasm.sdk.listAllocations()
+      bindAllocations()
+    })
+
+    onClick('btnRemoteFileMap', async () => {
+      const allocationID = getSelectedAllocation()
+      if (!allocationID) {
+        alert("please select allocation")
+        return
+      }
+      try {
+        let resp = await goWasm.sdk.getRemoteFileMap(allocationID)
+        console.log(resp)
+        txtOutput.innerHTML = JSON.stringify(resp, null, 2)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('makeSCRestAPICall', async () => {
+      const allocationID = getSelectedAllocation()
+
+      try {
+        params = {
+          "allocation": allocationID
+        }
+        paramsJSON = JSON.stringify(params, null, 2)
+        storagesc = "6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712d7"
+        const resp = await goWasm.sdk.makeSCRestAPICall(storagesc, "/allocation", paramsJSON)
+        txtOutput.innerHTML = resp
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('createDir', async () => {
+      const allocationId = getSelectedAllocation()
+      goWasm.sdk.createDir(allocationId, "/dir2")
+    })
+
+    onClick('btnListBlobbers', async () => {
+      // list active blobbers
+      let blobbersResp = await getBlobbersFromNetwork()
+      blobbers = blobbersResp.Nodes
+      bindBlobbers()
+    })
+
+    onClick('btnGetAllocation', async () => {
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please select allocation")
+        return
+      }
+      const alloc = await goWasm.sdk.getAllocation(allocationId)
+      txtOutput.innerHTML = JSON.stringify(alloc, null, 2)
+    })
+
+    onClick('btnGetAllocationMinLock', async () => {
+      let dataShards = 2
+      let parityShards = 2
+      let size = 100000
+      let maxReadPrice = 10000000000
+      let maxWritePrice = 1000000000
+      try {
+        const price = await goWasm.sdk.getAllocationMinLock(dataShards, parityShards, size, maxReadPrice, maxWritePrice)
+        txtOutput.innerHTML = price
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnGetUpdateAllocationMinLock', async () => {
+      let size = 100000
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please selection allocationID")
+        return
+      } else {
+        console.log("allocation:", allocationId)
+      }
+      try {
+        const price = await goWasm.sdk.getUpdateAllocationMinLock(allocationId, size, true, false, "", "")
+        txtOutput.innerHTML = price
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnListBlobberSettings', async () => {
+      const blobberID = getSelectedBlobbers()
+      if (!blobberID) {
+        alert("please select blobber")
+        return
+      }
+      const details = await getBlobberDetails(blobberID)
+      txtOutput.innerHTML = JSON.stringify(details, null, 2)
+    })
+
+    // increases readprice of blobber by 1 unit
+    onClick('updateBlobberSettings', async () => {
+      const blobberID = getSelectedBlobbers()
+      if (!blobberID) {
+        alert("please select blobber")
+        return
+      }
+      let details = await getBlobberDetails(blobberID)
+      details.terms.read_price += 1
+      try {
+        const txn = await goWasm.sdk.updateBlobberSettings(JSON.stringify(details))
+      } catch (e) {
+        alert(e)
+      }
+      // txtOutput.innerHTML = JSON.stringify(alloc, null, 2)
+    })
+
+    onClick('btnListFiles', async () => {
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please selection allocationID")
+        return
+      }
+      const { list = [] } = await goWasm.sdk.listObjects(allocationId, '/',-1,50)
+      files = list || []
+      bindFiles()
+    })
+
+    onClick('btnUploadFile', async () => {
+      const { files } = get('inputSelectedFile')
+      if (files && files.length > 0) {
+
+        const objects = []
+        const allocationId = getSelectedAllocation()
+        for (const file of files) {
+          objects.push({
+            allocationId: allocationId,
+            remotePath: `/${file.name}`,
+            file: file,
+            // thumbnailBytes: await readBytes(file),//only for demo, don't upload original file as thumbnail in production
+            encrypt: false,
+            webstreaming: false,
+            isUpdate: false,
+            isRepair: false,
+            numBlocks: 120,
+            callback: function (totalBytes, completedBytes, error) {
+              console.log(file.name + " " + completedBytes + "/" + totalBytes + " err:" + error)
+            }
+          })
+        }
+        const results = await goWasm.bulkUpload(objects)
+        console.log(JSON.stringify(results))
+      }
+    })
+
+    onClick('btnShare', async () => {
+      // change these values according to your wallet (obtained from zbox `zbox getwallet`)
+      let clientID = "a4c53bf248c634ea483a98cbaa6b767226f504506b299384b30f2c00a52f0851"
+      let encryptionPublicKey = "SCxZlinUp+Z29jt8hXT623osEjALXVel6HdHgq1lXEY="
+
+      const file = files.find(it => it.path == getSelectedFile())
+      if (file) {
+        const allocationId = getSelectedAllocation()
+        if (!allocationId) {
+          alert("please provide allocationId")
+          return
+        }
+
+        console.log("sharing file", file?.path)
+        let time = Date.now()
+        let expiration = time += 3600 // after 1 hour
+        let availableAfter = 0
+        try {
+          const result = await goWasm.sdk.share(allocationId, file?.path, "", "", expiration, false, availableAfter)
+          console.log("output of share", result)
+          txtOutput.innerHTML = JSON.stringify(result, null, 2)
+        } catch (e) {
+          alert(e)
+        }
+      }
+
+    })
+
+    onClick('btnUploadEncryptFile', async () => {
+      const { files } = get('inputSelectedFile')
+      if (files && files.length > 0) {
+
+        const objects = []
+        const allocationId = getSelectedAllocation()
+        if (!allocationId) {
+          alert("please provide allocationId")
+        }
+        for (const file of files) {
+          objects.push({
+            allocationId: allocationId,
+            remotePath: `/${file.name}`,
+            file: file,
+            thumbnailBytes: await readBytes(file),//only for demo, don't upload original file as thumbnail in production
+            encrypt: true,
+            webstreaming: false,
+            isUpdate: false,
+            isRepair: false,
+            numBlocks: 100,
+            callback: function (totalBytes, completedBytes, error) {
+              console.log(file.name + " " + completedBytes + "/" + totalBytes + " err:" + error)
+            }
+          })
+        }
+
+        const results = await goWasm.bulkUpload(objects)
+
+        console.log(JSON.stringify(results))
+      }
+    })
+
+    onClick('btnDownloadFile', async () => {
+      const path = getSelectedFile()
+      if (path) {
+
+        const allocationId = getSelectedAllocation()
+
+        //allocationID, remotePath, authTicket, lookupHash string, downloadThumbnailOnly bool, numBlocks int
+        const file = await goWasm.sdk.download(allocationId, path, '', '', false, 10, "downloadCallback", true)
+
+        const a = document.createElement('a')
+        document.body.appendChild(a)
+        a.style = 'display: none'
+
+        a.href = file.url
+        a.download = file.fileName
+        a.click()
+        window.URL.revokeObjectURL(file.url)
+        document.body.removeChild(a)
+
+      }
+    })
+
+    onClick('btnAddReplaceBlobber', async () => {
+
+      var addremoveBlobberIDs = prompt("Add Blobber ID and remove blobberID (separated by a comma): ");
+
+      var [addBlobberId, removeBlobberID] = addremoveBlobberIDs.split(",");
+      // removeBlobberID = removeBlobberID !== undefined ? value : "";
+
+      console.log("addBlobberId", addBlobberId)
+      console.log("removeBlobberID", removeBlobberID)
+      // addBlobberId = addBlobberId.trim()
+      // removeBlobberID = removeBlobberID.trim()
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please provide allocationId")
+      }
+
+      try {
+        const file = await goWasm.sdk.updateAllocationWithRepair(allocationId, 0, 0, 5000000000, false, addBlobberId, removeBlobberID)
+
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnDownloadShared', async () => {
+
+      const authTicket = get('authTicket').value
+      if (authTicket) {
+        try {
+          const file = await goWasm.sdk.download('', '', authTicket, '', false, 10, "downloadCallback", true)
+
+          console.log("downloaded file", file)
+          const a = document.createElement('a')
+          document.body.appendChild(a)
+          a.style = 'display: none'
+          a.href = file.url
+          a.download = file.fileName
+          a.click()
+          window.URL.revokeObjectURL(file.url)
+          document.body.removeChild(a)
+        } catch (e) {
+          alert(e)
+        }
+      }
+    })
+
+    onClick('decodeAuthticket', async () => {
+      const authTicket = get('authTicket').value
+      if (authTicket) {
+        try {
+          const output = await goWasm.sdk.decodeAuthTicket(authTicket);
+          console.log(output)
+          txtOutput.innerHTML = JSON.stringify(output, null, 2)
+        } catch (e) {
+          alert(e)
+        }
+      }
+    })
+
+    onClick('btnViewFile', async () => {
+      const file = files.find(it => it.path == getSelectedFile())
+      if (file && file.mimetype.startsWith('image')) {
+        const allocationId = getSelectedAllocation()
+        const { url } = await goWasm.sdk.download(allocationId, file.path, '', '', false, 10,)
+        get('viewer').setAttribute('src', url)
+      }
+    })
+
+    const player = get('player')
+    let isPlayerReady = false
+
+    onClick('btnPlay', async () => {
+
+      if (isPlayerReady) {
+        if (player.paused) {
+          player.play()
+        }
+      } else {
+
+        const file = files.find(it => it.path == getSelectedFile())
+
+        const isLive = file.type == 'd'
+
+        if (file) {
+          const allocationId = getSelectedAllocation()
+          startPlay({
+            goWasm,
+            allocationId,
+            containerElement: get('container'),
+            videoElement: player,
+            remotePath: file?.path,
+            authTicket: '',
+            lookupHash: file?.lookup_hash,
+            mimeType: file?.mimetype,
+            isLive: isLive,
+          })
+          isPlayerReady = true
+        }
+      }
+
+    })
+
+    onClick('btnPlayShared', async () => {
+
+      if (isPlayerReady) {
+        if (player.paused) {
+          player.play()
+        }
+      } else {
+
+        const authTicket = get('authTicket').value
+
+        const isLive = false
+
+        if (authTicket) {
+          const allocationId = getSelectedAllocation()
+          startPlay({
+            goWasm,
+            allocationId,
+            videoElement: player,
+            remotePath: '',
+            authTicket: authTicket,
+            lookupHash: '',
+            mimeType: '',
+            isLive: isLive,
+          })
+          isPlayerReady = true
+        }
+      }
+
+    })
+
+    onClick('btnPause', async () => {
+      player.pause();
+    })
+
+    onClick('btnStop', async () => {
+      if (isPlayerReady) {
+        stopPlay({ goWasm, videoElement: player })
+        isPlayerReady = false
+      }
+    })
+
+
+    const log = console.log
+    const logs = get('logs')
+    onClick('btnShowLogs', async () => {
+      await goWasm.sdk.showLogs()
+      console.log = s => {
+        log(s)
+        logs.value += s + "\n"
+        logs.scrollLeft = 0;
+        logs.scrollTop = logs.scrollHeight;
+      }
+    })
+
+    onClick('btnHideLogs', async () => {
+      await goWasm.sdk.hideLogs()
+      console.log = log
+    })
+
+
+
+    onClick('btnGetFileStats', async () => {
+      const file = files.find(it => it.path == getSelectedFile())
+      if (file) {
+        const allocationId = getSelectedAllocation()
+        const stats = await goWasm.sdk.getFileStats(allocationId, file?.path)
+        txtOutput.innerHTML = JSON.stringify(stats, null, 2)
+      }
+
+    })
+
+    onClick('btnDelete', async () => {
+      const file = files.find(it => it.path == getSelectedFile())
+      if (file) {
+        const allocationId = getSelectedAllocation()
+        await goWasm.sdk.delete(allocationId, file?.path)
+      }
+    })
+
+    onClick('btnGetUSDRate', async () => {
+
+      const rate = await goWasm.sdk.getUSDRate("zcn")
+      txtOutput.innerHTML = rate
+    })
+
+    onClick('btnGetContainers', async () => {
+      const domain = "https://chimneyhwayr.zus.network"
+      const username = "username1"
+      const password = "password1"
+
+      try {
+        const stats = await goWasm.sdk.getcontainers(username, password, domain)
+        txtOutput.innerHTML = JSON.stringify(stats, null, 2)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnUpdateContainer', async () => {
+      const containerid = "3f9b21fcb9df9d6cc88b024357bf940284f749d4c30e13b7791d721def752498"
+      const domain = "https://chimneyhwayr.zus.network"
+      const username = "username1"
+      const password = "password1"
+      const image = "0chaindev/blobber:staging"
+      try {
+        const stats = await goWasm.sdk.updatecontainer(username, password, domain, containerid, image)
+        txtOutput.innerHTML = JSON.stringify(stats, null, 2)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnSearchContainer', async () => {
+      const domain = "https://chimneyhwayr.zus.network"
+      const username = "username1"
+      const password = "password1"
+      const containername = "validator"
+      try {
+        const stats = await goWasm.sdk.searchcontainer(username, password, domain, containername)
+        txtOutput.innerHTML = JSON.stringify(stats, null, 2)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnAllocationRepair', async () => {
+      const allocationId = getSelectedAllocation()
+      const output = await goWasm.sdk.allocationRepair(allocationId, "/")
+      txtOutput.innerHTML = output
+    })
+
+    onClick('btnMultiDownload', async () => {
+      console.log('multidownload')
+      const path = getSelectedFile()
+
+      const objects = []
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please provide allocationId")
+      }
+
+      objects.push({
+        remotePath: path,
+        downloadOp: 1,
+        numBlocks: 0,
+        downloadToDisk: true,
+      })
+      let stringifiedArray = JSON.stringify(objects);
+
+      try {
+        const results = await goWasm.sdk.multiDownload('', stringifiedArray, '', '')
+        console.log(JSON.stringify(results))
+      } catch (e) {
+        alert(e)
+      }
+
+    })
+
+    onClick('btnMultiOps', async () => {
+      const allocationId = getSelectedAllocation()
+      if (!allocationId) {
+        alert("please provide allocationId")
+      }
+      const objects = []
+
+      objects.push(
+        { // rename file
+          operationType: `move`,
+          remotePath: `/small2-182b.txt`,
+          destPath: `/folder/small-182b.txt`,
+        },
+        { // todo: rename folder
+          operationType: `move`,
+          remotePath: `/folder`,
+          destPath: `/folder2`,
+        },
+        { // move a file to an other folder
+          operationType: `move`,
+          remotePath: `/small-182b.txt`,
+          destPath: `/folder/`,
+        },
+        { // copy a file to an other folder
+          operationType: `copy`,
+          remotePath: `/small2-182b.txt`,
+          destPath: `/folder/`,
+        },
+      )
+
+      let stringifiedArray = JSON.stringify(objects);
+
+      try {
+        console.log("executing MultiOps", objects[0])
+        const output = await goWasm.sdk.multiOperation(allocationId, stringifiedArray)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnSetWalletInfo', async () => {
+      const jsonWallet = {
+        "client_id": "30764bcba73216b67c36b05a17b4dd076bfdc5bb0ed84856f27622188c377269",
+        "client_key": "1f495df9605a4479a7dd6e5c7a78caf9f9d54e3a40f62a3dd68ed377115fe614d8acf0c238025f67a85163b9fbf31d10fbbb4a551d1cf00119897edf18b1841c",
+        "keys": [
+          { "public_key": "1f495df9605a4479a7dd6e5c7a78caf9f9d54e3a40f62a3dd68ed377115fe614d8acf0c238025f67a85163b9fbf31d10fbbb4a551d1cf00119897edf18b1841c", "private_key": "41729ed8d82f782646d2d30b9719acfd236842b9b6e47fee12b7bdbd05b35122" }
+        ],
+        "mnemonics": "glare mistake gun joke bid spare across diagram wrap cube swear cactus cave repeat you brave few best wild lion pitch pole original wasp",
+        "version": "1.0",
+        "date_created": "1662534022",
+        "nonce": 0
+      }
+      const splitKeyWallet = true
+      try {
+        const jsonWalletString = JSON.stringify(jsonWallet);
+        const isWalletInfoSet = await goWasm.sdk.setWalletInfo(jsonWalletString, splitKeyWallet)
+        console.log("Set Wallet Info:", isWalletInfoSet)
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnSetAuthUrl', async () => {
+      // need to call setSplitKeyWallet to set wallet type to split key initially.
+      const jsonWallet = {
+        "client_id": "30764bcba73216b67c36b05a17b4dd076bfdc5bb0ed84856f27622188c377269",
+        "client_key": "1f495df9605a4479a7dd6e5c7a78caf9f9d54e3a40f62a3dd68ed377115fe614d8acf0c238025f67a85163b9fbf31d10fbbb4a551d1cf00119897edf18b1841c",
+        "keys": [
+          { "public_key": "1f495df9605a4479a7dd6e5c7a78caf9f9d54e3a40f62a3dd68ed377115fe614d8acf0c238025f67a85163b9fbf31d10fbbb4a551d1cf00119897edf18b1841c", "private_key": "41729ed8d82f782646d2d30b9719acfd236842b9b6e47fee12b7bdbd05b35122" }
+        ],
+        "mnemonics": "glare mistake gun joke bid spare across diagram wrap cube swear cactus cave repeat you brave few best wild lion pitch pole original wasp",
+        "version": "1.0",
+        "date_created": "1662534022",
+        "nonce": 0
+      }
+      const splitKeyWallet = true
+      try {
+        const jsonWalletString = JSON.stringify(jsonWallet);
+        const isWalletInfoSet = await goWasm.sdk.setWalletInfo(jsonWalletString, splitKeyWallet)
+        console.log("Set Wallet Info:", isWalletInfoSet)
+      } catch (e) {
+        alert(e)
+      }
+      // can add any string ,because just had string check while checking url
+      const url = "Testing"
+      try {
+        const isAuthURLSet = await goWasm.sdk.setAuthUrl(url)
+        console.log("Set Auth URL", isAuthURLSet);
+      } catch (e) {
+        alert(e)
+      }
+    })
+
+    onClick('btnRegAuth', async () => {
+      const authCallback = function (msg) {
+        return `Authorized: ${msg}`;
+      };
+
+      const registerAuthorizer = goWasm.sdk.registerAuthorizer;
+      registerAuthorizer(authCallback);
+
+      // call the callAuth to see if the auth is set properly
+      // Use the stored callback function from Go
+      const message = "Hello, World!";
+      const result = goWasm.sdk.callAuth(message);
+      console.log(result); // Output: "Authorized: Hello, World!"
+    })
+
+  </script>
+</body>
