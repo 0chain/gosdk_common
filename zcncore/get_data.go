@@ -8,12 +8,12 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/0chain/gosdk/core/block"
-	"github.com/0chain/gosdk/core/client"
-	"github.com/0chain/gosdk/core/sys"
-	"github.com/0chain/gosdk/core/tokenrate"
-	"github.com/0chain/gosdk/core/util"
-	"github.com/0chain/gosdk/core/zcncrypto"
+	"github.com/0chain/gosdk_common/core/block"
+	"github.com/0chain/gosdk_common/common/core/client"
+	"github.com/0chain/gosdk_common/common/core/sys"
+	"github.com/0chain/gosdk_common/common/core/tokenrate"
+	"github.com/0chain/gosdk_common/common/core/util"
+	"github.com/0chain/gosdk_common/common/core/zcncrypto"
 )
 
 type GetClientResponse struct {

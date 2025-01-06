@@ -10,16 +10,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0chain/gosdk/core/client"
-	"github.com/0chain/gosdk/core/conf"
-	"github.com/0chain/gosdk/core/logger"
-	"github.com/0chain/gosdk/core/sys"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/common/core/conf"
+	"github.com/0chain/gosdk_common/common/core/logger"
+	"github.com/0chain/gosdk_common/common/core/sys"
 	"go.uber.org/zap"
 
 	"github.com/0chain/errors"
-	"github.com/0chain/gosdk/core/common"
-	"github.com/0chain/gosdk/core/encryption"
-	"github.com/0chain/gosdk/core/util"
+	"github.com/0chain/gosdk_common/common/core/common"
+	"github.com/0chain/gosdk_common/common/core/encryption"
+	"github.com/0chain/gosdk_common/common/core/util"
 	lru "github.com/hashicorp/golang-lru"
 )
 

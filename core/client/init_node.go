@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0chain/gosdk/constants"
-	"github.com/0chain/gosdk/core/conf"
-	"github.com/0chain/gosdk/core/logger"
-	"github.com/0chain/gosdk/core/util"
+	"github.com/0chain/gosdk_common/constants"
+	"github.com/0chain/gosdk_common/common/core/conf"
+	"github.com/0chain/gosdk_common/common/core/logger"
+	"github.com/0chain/gosdk_common/common/core/util"
 	"go.uber.org/zap"
 )
 

@@ -14,10 +14,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0chain/gosdk/zboxcore/mocks"
+	"github.com/0chain/gosdk_common/zboxcore/mocks"
 	"github.com/stretchr/testify/require"
 
-	"github.com/0chain/gosdk/core/resty"
+	"github.com/0chain/gosdk_common/common/core/resty"
 )
 
 func TestGetUSD(t *testing.T) {

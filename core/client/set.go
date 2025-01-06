@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/0chain/gosdk/core/conf"
+	"github.com/0chain/gosdk_common/core/conf"
 
-	"github.com/0chain/gosdk/constants"
-	"github.com/0chain/gosdk/core/sys"
-	"github.com/0chain/gosdk/core/zcncrypto"
+	"github.com/0chain/gosdk_common/common/constants"
+	"github.com/0chain/gosdk_common/common/core/sys"
+	"github.com/0chain/gosdk_common/common/core/zcncrypto"
 )
 
 var (

@@ -7,8 +7,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/0chain/gosdk/core/client"
-	"github.com/0chain/gosdk/core/sys"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/common/core/sys"
 	"github.com/pkg/errors"
 )
 
