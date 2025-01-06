@@ -1,4 +1,4 @@
-module github.com/0chain/gosdk
+module github.com/0chain/gosdk_common
 
 go 1.22.0
 
