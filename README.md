@@ -48,7 +48,7 @@ This repository currently supports the following platforms:
         import (
             "fmt"
 
-            "github.com/0chain/gosdk/zcncore"
+            "github.com/0chain/gosdk_common/zcncore"
         )
 
         func main() {
@@ -121,7 +121,7 @@ Steps:
 
    - a function from a new file, you should create a new `<filename>.go` file for it, in the same style as `wasmsdk/wallet.go` or `wasmsdk/ethwallet.go`
 
-2. In func main(), `https://github.com/0chain/gosdk/wasmsdk/proxy.go`, you need to add this line:
+2. In func main(), `https://github.com/0chain/gosdk_common/wasmsdk/proxy.go`, you need to add this line:
 
    ```golang
        js.Global().Set("YOURFUNC", js.FuncOf(YOURFUNC))
@@ -130,7 +130,7 @@ Steps:
 3. Now you need to compile a new `<any_name>.wasm` (e.g. proxy.wasm). Currently, the right version to compile wasm is with Go version 1.16. So make sure you have it to make the wasm build works properly. In order to compile, run the following command:
 
    ```bash
-   $ GOOS=js CGO_ENABLED=0 GOARCH=wasm go build -o <any_name>.wasm github.com/0chain/gosdk/wasmsdk
+   $ GOOS=js CGO_ENABLED=0 GOARCH=wasm go build -o <any_name>.wasm github.com/0chain/gosdk_common/wasmsdk
    ```
 
 ### An important note regarding export of an async function
@@ -171,15 +171,15 @@ func InitZCNSDK(this js.Value, p []js.Value) interface{} {
 
 It's advisable to put GOPATH as `$TOP/../go`, to avoid conflicts with this command: `go build ./...`
 
-To run all the unit tests in `gosdk`: `go test github.com/0chain/gosdk/zboxcore/sdk -v`
+To run all the unit tests in `gosdk`: `go test github.com/0chain/gosdk_common/zboxcore/sdk -v`
 
 ```bash
 $ go test ./...
 ```
 
-To run all the unit tests in `bls0chain_test.go`, run this command from $TOP: `go test github.com/0chain/gosdk/core/zcncrypto -v`
+To run all the unit tests in `bls0chain_test.go`, run this command from $TOP: `go test github.com/0chain/gosdk_common/core/zcncrypto -v`
 
-To run a specific unit test in `bls0chain_test.go`, such as `TestSignatureScheme`, run: `go test github.com/0chain/gosdk/core/zcncrypto -v -run TestSignatureScheme`
+To run a specific unit test in `bls0chain_test.go`, such as `TestSignatureScheme`, run: `go test github.com/0chain/gosdk_common/core/zcncrypto -v -run TestSignatureScheme`
 
 To run the coverage test in `gosdk`:
 
@@ -198,7 +198,7 @@ $ go tool cover -html=coverage.out
 
 3. You can then run the test by following the [BLS unit test](#bls-unit-test) above by adding the prefix environment `GOOS=js CGO_ENABLED=0 GOARCH=wasm`:
    ```bash
-   go test -tags test -v github.com/0chain/gosdk/wasmsdk
+   go test -tags test -v github.com/0chain/gosdk_common/wasmsdk
    ```
 
 #### Test in the client
