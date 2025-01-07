@@ -9,7 +9,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/0chain/gosdk/zcnbridge/log"
+	"github.com/0chain/gosdk_common/zcnbridge/log"
 	"github.com/ethereum/go-ethereum/ethclient"
 
 	"github.com/spf13/viper"
@@ -17,8 +17,8 @@ import (
 
 const (
 	TenderlyProvider = iota
-	AlchemyProvider
 	UnknownProvider
+	AlchemyProvider
 )
 
 const (

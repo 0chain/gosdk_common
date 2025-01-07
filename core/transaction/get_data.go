@@ -3,7 +3,7 @@ package transaction
 import (
 	"encoding/json"
 	"github.com/0chain/errors"
-	coreHttp "github.com/0chain/gosdk/core/client"
+	coreHttp "github.com/0chain/gosdk_common/core/client"
 )
 
 const (

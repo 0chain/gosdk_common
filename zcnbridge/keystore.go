@@ -5,7 +5,7 @@ import (
 	"path"
 	"time"
 
-	hdw "github.com/0chain/gosdk/zcncore/ethhdwallet"
+	hdw "github.com/0chain/gosdk_common/zcncore/ethhdwallet"
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"

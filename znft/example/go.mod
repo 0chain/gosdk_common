@@ -4,8 +4,6 @@ go 1.21
 
 toolchain go1.21.0
 
-require github.com/0chain/gosdk v1.8.9
-
 require (
 	github.com/btcsuite/btcd v0.23.4 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2 // indirect
