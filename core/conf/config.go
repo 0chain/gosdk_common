@@ -46,6 +46,8 @@ const (
 type Config struct {
 	// BlockWorker the url of 0dns's network api
 	BlockWorker string `json:"block_worker,omitempty"`
+	// PreferredBlobbers preferred blobbers on new allocation
+	PreferredBlobbers []string `json:"preferred_blobbers,omitempty"`
 
 	// MinSubmit mininal submit from blobber
 	MinSubmit int `json:"min_submit,omitempty"`
@@ -167,6 +169,7 @@ func LoadConfig(v Reader) (Config, error) {
 	}
 
 	cfg.BlockWorker = blockWorker
+	cfg.PreferredBlobbers = v.GetStringSlice("preferred_blobbers")
 	cfg.MinSubmit = minSubmit
 	cfg.MinConfirmation = minCfm
 	cfg.ConfirmationChainLength = CfmChainLength
