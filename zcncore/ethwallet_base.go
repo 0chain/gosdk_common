@@ -16,9 +16,9 @@ import (
 	"sync"
 
 	"github.com/0chain/gosdk_common/core/conf"
-	"github.com/0chain/gosdk_common/common/core/tokenrate"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
-	hdwallet "github.com/0chain/gosdk_common/common/zcncore/ethhdwallet"
+	"github.com/0chain/gosdk_common/core/tokenrate"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
+	hdwallet "github.com/0chain/gosdk_common/zcncore/ethhdwallet"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"

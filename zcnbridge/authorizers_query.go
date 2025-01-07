@@ -10,13 +10,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/0chain/gosdk_common/common/core/common"
-	"github.com/0chain/gosdk_common/common/zcnbridge/errors"
-	"github.com/0chain/gosdk_common/common/zcnbridge/ethereum"
-	h "github.com/0chain/gosdk_common/common/zcnbridge/http"
-	"github.com/0chain/gosdk_common/common/zcnbridge/log"
-	"github.com/0chain/gosdk_common/common/zcnbridge/wallet"
-	"github.com/0chain/gosdk_common/common/zcnbridge/zcnsc"
+	"github.com/0chain/gosdk_common/core/common"
+	"github.com/0chain/gosdk_common/zcnbridge/errors"
+	"github.com/0chain/gosdk_common/zcnbridge/ethereum"
+	h "github.com/0chain/gosdk_common/zcnbridge/http"
+	"github.com/0chain/gosdk_common/zcnbridge/log"
+	"github.com/0chain/gosdk_common/zcnbridge/wallet"
+	"github.com/0chain/gosdk_common/zcnbridge/zcnsc"
 	"go.uber.org/zap"
 )
 

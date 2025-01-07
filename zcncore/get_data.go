@@ -9,11 +9,11 @@ import (
 	"strconv"
 
 	"github.com/0chain/gosdk_common/core/block"
-	"github.com/0chain/gosdk_common/common/core/client"
-	"github.com/0chain/gosdk_common/common/core/sys"
-	"github.com/0chain/gosdk_common/common/core/tokenrate"
-	"github.com/0chain/gosdk_common/common/core/util"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/core/sys"
+	"github.com/0chain/gosdk_common/core/tokenrate"
+	"github.com/0chain/gosdk_common/core/util"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
 )
 
 type GetClientResponse struct {

@@ -5,8 +5,8 @@ import (
 
 	"github.com/0chain/errors"
 	"github.com/0chain/gosdk_common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/sys"
-	"github.com/0chain/gosdk_common/common/zboxcore/client"
+	"github.com/0chain/gosdk_common/core/sys"
+	"github.com/0chain/gosdk_common/zboxcore/client"
 )
 
 type VersionMarker struct {

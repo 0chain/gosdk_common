@@ -9,11 +9,11 @@ import (
 	"fmt"
 
 	"github.com/0chain/gosdk_common/core/client"
-	"github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/imageutil"
-	"github.com/0chain/gosdk_common/common/core/logger"
-	"github.com/0chain/gosdk_common/common/zboxcore/sdk"
-	"github.com/0chain/gosdk_common/common/zcncore"
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/imageutil"
+	"github.com/0chain/gosdk_common/core/logger"
+	"github.com/0chain/gosdk_common/zboxcore/sdk"
+	"github.com/0chain/gosdk_common/zcncore"
 
 	"io"
 	"os"

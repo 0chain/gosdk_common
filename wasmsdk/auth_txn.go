@@ -8,8 +8,8 @@ import (
 	"syscall/js"
 
 	"github.com/0chain/gosdk_common/core/sys"
-	"github.com/0chain/gosdk_common/common/wasmsdk/jsbridge"
-	"github.com/0chain/gosdk_common/common/zcncore"
+	"github.com/0chain/gosdk_common/wasmsdk/jsbridge"
+	"github.com/0chain/gosdk_common/zcncore"
 )
 
 type AuthCallbackFunc func(msg string) string

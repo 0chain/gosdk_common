@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/0chain/gosdk_common/constants"
-	"github.com/0chain/gosdk_common/common/core/conf"
-	"github.com/0chain/gosdk_common/common/core/logger"
-	"github.com/0chain/gosdk_common/common/core/util"
+	"github.com/0chain/gosdk_common/core/conf"
+	"github.com/0chain/gosdk_common/core/logger"
+	"github.com/0chain/gosdk_common/core/util"
 	"go.uber.org/zap"
 )
 

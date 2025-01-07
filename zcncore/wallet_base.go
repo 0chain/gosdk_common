@@ -9,18 +9,18 @@ import (
 	"time"
 
 	"github.com/0chain/gosdk_common/constants"
-	"github.com/0chain/gosdk_common/common/core/common"
-	"github.com/0chain/gosdk_common/common/core/util"
+	"github.com/0chain/gosdk_common/core/common"
+	"github.com/0chain/gosdk_common/core/util"
 
 	"errors"
 
-	"github.com/0chain/gosdk_common/common/core/client"
-	rawencryption "github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/logger"
-	"github.com/0chain/gosdk_common/common/core/version"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
-	"github.com/0chain/gosdk_common/common/zboxcore/encryption"
-	"github.com/0chain/gosdk_common/common/zboxcore/zboxutil"
+	"github.com/0chain/gosdk_common/core/client"
+	rawencryption "github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/logger"
+	"github.com/0chain/gosdk_common/core/version"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
+	"github.com/0chain/gosdk_common/zboxcore/encryption"
+	"github.com/0chain/gosdk_common/zboxcore/zboxutil"
 	openssl "github.com/Luzifer/go-openssl/v3"
 	"gopkg.in/natefinch/lumberjack.v2"
 )

@@ -13,7 +13,7 @@ import (
 	"path/filepath"
 
 	"github.com/0chain/gosdk_common/core/encryption"
-	"github.com/0chain/gosdk_common/common/zboxcore/marker"
+	"github.com/0chain/gosdk_common/zboxcore/marker"
 )
 
 func getZcnWorkDir() (string, error) {

@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/0chain/gosdk_common/core/sys"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
 )
 
 type SignFunc func(hash string) (string, error)

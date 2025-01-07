@@ -17,7 +17,7 @@ import (
 	"github.com/0chain/gosdk_common/zboxcore/mocks"
 	"github.com/stretchr/testify/require"
 
-	"github.com/0chain/gosdk_common/common/core/resty"
+	"github.com/0chain/gosdk_common/core/resty"
 )
 
 func TestGetUSD(t *testing.T) {

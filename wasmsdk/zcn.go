@@ -5,7 +5,7 @@ package main
 
 import (
 	"github.com/0chain/gosdk_common/core/client"
-	"github.com/0chain/gosdk_common/common/zcncore"
+	"github.com/0chain/gosdk_common/zcncore"
 )
 
 type Balance struct {

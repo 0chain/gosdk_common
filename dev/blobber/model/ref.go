@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/0chain/gosdk_common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/pathutil"
+	"github.com/0chain/gosdk_common/core/pathutil"
 )
 
 const (

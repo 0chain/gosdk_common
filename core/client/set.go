@@ -9,9 +9,9 @@ import (
 
 	"github.com/0chain/gosdk_common/core/conf"
 
-	"github.com/0chain/gosdk_common/common/constants"
-	"github.com/0chain/gosdk_common/common/core/sys"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
+	"github.com/0chain/gosdk_common/constants"
+	"github.com/0chain/gosdk_common/core/sys"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
 )
 
 var (

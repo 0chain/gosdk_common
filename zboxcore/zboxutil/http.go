@@ -17,8 +17,8 @@ import (
 
 	"github.com/0chain/errors"
 	"github.com/0chain/gosdk_common/core/client"
-	"github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/logger"
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/logger"
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/hitenjain14/fasthttp"
 )

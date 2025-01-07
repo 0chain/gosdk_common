@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/0chain/gosdk_common/core/common"
-	"github.com/0chain/gosdk_common/common/zboxcore/marker"
+	"github.com/0chain/gosdk_common/zboxcore/marker"
 )
 
 type WriteMarker struct {

@@ -4,9 +4,9 @@ import (
 	"errors"
 
 	"github.com/0chain/gosdk_common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/sys"
-	"github.com/0chain/gosdk_common/common/core/zcncrypto"
-	_ "github.com/0chain/gosdk_common/common/core/client" //import it to initialize sys.Sign
+	"github.com/0chain/gosdk_common/core/sys"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
+	_ "github.com/0chain/gosdk_common/core/client" //import it to initialize sys.Sign
 )
 
 var ErrInvalidSignatureScheme = errors.New("invalid_signature_scheme")

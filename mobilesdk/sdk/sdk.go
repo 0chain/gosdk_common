@@ -16,16 +16,16 @@ import (
 	"github.com/0chain/gosdk_common/core/sys"
 	"github.com/pkg/errors"
 
-	"github.com/0chain/gosdk_common/common/core/client"
-	"github.com/0chain/gosdk_common/common/core/conf"
-	"github.com/0chain/gosdk_common/common/core/util"
-	"github.com/0chain/gosdk_common/common/core/version"
-	l "github.com/0chain/gosdk_common/common/zboxcore/logger"
-	"github.com/0chain/gosdk_common/common/zboxcore/sdk"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/core/conf"
+	"github.com/0chain/gosdk_common/core/util"
+	"github.com/0chain/gosdk_common/core/version"
+	l "github.com/0chain/gosdk_common/zboxcore/logger"
+	"github.com/0chain/gosdk_common/zboxcore/sdk"
 
-	"github.com/0chain/gosdk_common/common/mobilesdk/zbox"
-	"github.com/0chain/gosdk_common/common/mobilesdk/zboxapi"
-	"github.com/0chain/gosdk_common/common/zcncore"
+	"github.com/0chain/gosdk_common/mobilesdk/zbox"
+	"github.com/0chain/gosdk_common/mobilesdk/zboxapi"
+	"github.com/0chain/gosdk_common/zcncore"
 )
 
 var nonce = int64(0)

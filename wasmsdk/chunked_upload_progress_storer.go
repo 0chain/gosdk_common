@@ -7,7 +7,7 @@ import (
 	"sync"
 
 	"github.com/0chain/gosdk_common/zboxcore/sdk"
-	"github.com/0chain/gosdk_common/common/zboxcore/zboxutil"
+	"github.com/0chain/gosdk_common/zboxcore/zboxutil"
 )
 
 // chunkedUploadProgressStorer load and save upload progress

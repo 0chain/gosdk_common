@@ -8,10 +8,10 @@ import (
 
 	zError "github.com/0chain/errors"
 	"github.com/0chain/gosdk_common/core/common"
-	"github.com/0chain/gosdk_common/common/core/pathutil"
-	"github.com/0chain/gosdk_common/common/core/util"
-	"github.com/0chain/gosdk_common/common/zboxcore/fileref"
-	"github.com/0chain/gosdk_common/common/zboxcore/logger"
+	"github.com/0chain/gosdk_common/core/pathutil"
+	"github.com/0chain/gosdk_common/core/util"
+	"github.com/0chain/gosdk_common/zboxcore/fileref"
+	"github.com/0chain/gosdk_common/zboxcore/logger"
 	"github.com/google/uuid"
 )
 

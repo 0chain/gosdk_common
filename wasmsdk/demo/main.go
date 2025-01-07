@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/0chain/gosdk_common/core/common"
-	"github.com/0chain/gosdk_common/common/zcncore"
+	"github.com/0chain/gosdk_common/zcncore"
 	"github.com/uptrace/bunrouter"
 )
 

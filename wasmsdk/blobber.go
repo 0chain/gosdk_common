@@ -16,18 +16,18 @@ import (
 	"time"
 
 	"github.com/0chain/gosdk_common/constants"
-	"github.com/0chain/gosdk_common/common/core/client"
-	"github.com/0chain/gosdk_common/common/core/common"
-	"github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/pathutil"
-	"github.com/0chain/gosdk_common/common/core/sys"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/core/common"
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/pathutil"
+	"github.com/0chain/gosdk_common/core/sys"
 	"github.com/hack-pad/safejs"
 
-	"github.com/0chain/gosdk_common/common/core/transaction"
-	"github.com/0chain/gosdk_common/common/wasmsdk/jsbridge"
-	"github.com/0chain/gosdk_common/common/zboxcore/fileref"
-	"github.com/0chain/gosdk_common/common/zboxcore/sdk"
-	"github.com/0chain/gosdk_common/common/zboxcore/zboxutil"
+	"github.com/0chain/gosdk_common/core/transaction"
+	"github.com/0chain/gosdk_common/wasmsdk/jsbridge"
+	"github.com/0chain/gosdk_common/zboxcore/fileref"
+	"github.com/0chain/gosdk_common/zboxcore/sdk"
+	"github.com/0chain/gosdk_common/zboxcore/zboxutil"
 
 	"github.com/hack-pad/go-webworkers/worker"
 )

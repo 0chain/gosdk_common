@@ -6,9 +6,9 @@ import (
 
 	"github.com/0chain/errors"
 	"github.com/0chain/gosdk_common/constants"
-	"github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/sys"
-	"github.com/0chain/gosdk_common/common/core/client"
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/sys"
+	"github.com/0chain/gosdk_common/core/client"
 )
 
 // Client a client instance of restful api

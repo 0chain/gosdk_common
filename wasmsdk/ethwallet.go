@@ -114,7 +114,7 @@ func TransferEthTokens(this js.Value, p []js.Value) interface{} {
 	return promiseConstructor.New(handler)
 }
 
-// Exports public functions in github.com/0chain/gosdk_common/common/zcncore/ethwallet.go
+// Exports public functions in github.com/0chain/gosdk_common/zcncore/ethwallet.go
 func IsValidEthAddress(this js.Value, p []js.Value) interface{} {
 	ethAddr := p[0].String()
 	success, err := zcncore.IsValidEthAddress(ethAddr)

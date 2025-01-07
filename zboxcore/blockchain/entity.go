@@ -9,8 +9,8 @@ import (
 
 	"github.com/0chain/gosdk_common/core/util"
 
-	"github.com/0chain/gosdk_common/common/core/conf"
-	"github.com/0chain/gosdk_common/common/core/node"
+	"github.com/0chain/gosdk_common/core/conf"
+	"github.com/0chain/gosdk_common/core/node"
 )
 
 var miners []string

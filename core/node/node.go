@@ -15,9 +15,9 @@ import (
 
 	"github.com/0chain/errors"
 	"github.com/0chain/gosdk_common/core/block"
-	"github.com/0chain/gosdk_common/common/core/encryption"
-	"github.com/0chain/gosdk_common/common/core/util"
-	"github.com/0chain/gosdk_common/common/zboxcore/logger"
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/core/util"
+	"github.com/0chain/gosdk_common/zboxcore/logger"
 	"github.com/ethereum/go-ethereum/common/math"
 )
 

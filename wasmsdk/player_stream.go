@@ -12,9 +12,9 @@ import (
 	"time"
 
 	"github.com/0chain/gosdk_common/core/sys"
-	"github.com/0chain/gosdk_common/common/wasmsdk/jsbridge"
-	"github.com/0chain/gosdk_common/common/zboxcore/marker"
-	"github.com/0chain/gosdk_common/common/zboxcore/sdk"
+	"github.com/0chain/gosdk_common/wasmsdk/jsbridge"
+	"github.com/0chain/gosdk_common/zboxcore/marker"
+	"github.com/0chain/gosdk_common/zboxcore/sdk"
 )
 
 type StreamPlayer struct {
