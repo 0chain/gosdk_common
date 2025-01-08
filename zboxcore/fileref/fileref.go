@@ -104,6 +104,7 @@ type Ref struct {
 	ChildrenLoaded      bool
 	Children            []RefEntity      `json:"-" mapstructure:"-"`
 	AllocationRoot      string           `json:"allocation_root" mapstructure:"allocation_root"`
+	AllocationVersion   int64            `json:"allocation_version" mapstructure:"allocation_version"`
 	CreatedAt           common.Timestamp `json:"created_at" mapstructure:"created_at"`
 	UpdatedAt           common.Timestamp `json:"updated_at" mapstructure:"updated_at"`
 }
