@@ -23,7 +23,7 @@ import (
 	lru "github.com/hashicorp/golang-lru"
 )
 
-var Logger logger.Logger
+var Logger = logger.GetLogger()
 
 const STORAGE_SCADDRESS = "6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712d7"
 const MINERSC_SCADDRESS = "6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712d9"
@@ -109,14 +109,6 @@ const (
 	UNLOCK_TOKEN              = "unlock"
 
 	ADD_FREE_ALLOCATION_ASSIGNER = "add_free_storage_assigner"
-
-	// Vesting SC
-	VESTING_TRIGGER         = "trigger"
-	VESTING_STOP            = "stop"
-	VESTING_UNLOCK          = "unlock"
-	VESTING_ADD             = "add"
-	VESTING_DELETE          = "delete"
-	VESTING_UPDATE_SETTINGS = "vestingsc-update-settings"
 
 	// Storage SC
 	STORAGESC_FINALIZE_ALLOCATION       = "finalize_allocation"
@@ -278,7 +270,7 @@ func (t *Transaction) VerifySigWith(pubkey string, verifyHandler VerifyFunc) (bo
 }
 
 func SendTransactionSync(txn *Transaction, miners []string) error {
-	const requestTimeout = 30 * time.Second // Timeout for each request
+	const requestTimeout = 3 * time.Second // Timeout for each request
 
 	fails := make(chan error, len(miners))
 	var wg sync.WaitGroup

@@ -15,7 +15,6 @@ require (
 	github.com/hashicorp/golang-lru/v2 v2.0.1
 	github.com/herumi/bls-go-binary v1.31.0
 	github.com/hitenjain14/fasthttp v0.0.0-20240916135632-f9303a91736c
-	github.com/influxdata/influxdb v1.8.3
 	github.com/klauspost/reedsolomon v1.11.8
 	github.com/lithammer/shortuuid/v3 v3.0.7
 	github.com/machinebox/graphql v0.2.2
@@ -31,7 +30,6 @@ require (
 	golang.org/x/crypto v0.21.0
 	golang.org/x/image v0.14.0
 	golang.org/x/sync v0.7.0 // indirect
-	gopkg.in/cheggaaa/pb.v1 v1.0.28
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1 // indirect

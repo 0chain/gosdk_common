@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/stretchr/testify/mock"
 	"io"
 	"log"
 	"net/http"
@@ -13,6 +12,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/mock"
 
 	"github.com/0chain/gosdk_common/zboxcore/mocks"
 	"github.com/stretchr/testify/require"

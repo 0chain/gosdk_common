@@ -20,7 +20,7 @@ type Network struct {
 
 func NewNetwork(miners, sharders []string) (*Network, error) {
 	n := &Network{
-		Miners: miners,
+		Miners:   miners,
 		Sharders: sharders,
 	}
 	if !n.IsValid() {
