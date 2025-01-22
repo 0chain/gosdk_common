@@ -40,6 +40,7 @@ type StorageNode struct {
 	ID                string `json:"id"`
 	Baseurl           string `json:"url"`
 	AllocationVersion int64  `json:"-"`
+	AllocationRoot    string `json:"-"`
 	LatestWM          *marker.WriteMarker
 
 	skip uint64 `json:"-"` // skip on error
