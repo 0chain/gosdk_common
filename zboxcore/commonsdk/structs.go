@@ -21,6 +21,11 @@ type PriceRange struct {
 	Max uint64 `json:"max"`
 }
 
+// IsValid price range.
+func (pr *PriceRange) IsValid() bool {
+	return pr.Min <= pr.Max
+}
+
 type AllocationStats struct {
 	UsedSize                  int64  `json:"used_size"`
 	NumWrites                 int64  `json:"num_of_writes"`

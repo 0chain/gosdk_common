@@ -56,7 +56,7 @@ func CreateAllocationForOwner(
 	}
 
 	if client.PublicKey() == ownerpublickey {
-		privateSigningKey, err := generateOwnerSigningKey(ownerpublickey, owner)
+		privateSigningKey, err := GenerateOwnerSigningKey(ownerpublickey, owner)
 		if err != nil {
 			return "", 0, nil, errors.New("failed_generate_owner_signing_key", "failed to generate owner signing key: "+err.Error())
 		}
@@ -281,7 +281,7 @@ func WritePoolUnlock(allocID string, fee uint64) (hash string, nonce int64, err 
 	return
 }
 
-func generateOwnerSigningKey(ownerPublicKey, ownerID string) (ed25519.PrivateKey, error) {
+func GenerateOwnerSigningKey(ownerPublicKey, ownerID string) (ed25519.PrivateKey, error) {
 	if ownerPublicKey == "" {
 		return nil, errors.New("owner_public_key_required", "owner public key is required")
 	}
