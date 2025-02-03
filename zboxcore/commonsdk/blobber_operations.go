@@ -15,6 +15,23 @@ import (
 	"go.uber.org/zap"
 )
 
+type UpdateAllocationOptions struct {
+	Size                    int64
+	AuthRoundExpiry         int64
+	Extend                  bool
+	AllocationID            string
+	Lock                    uint64
+	AddBlobberID            string
+	AddBlobberAuthTicket    string
+	RemoveBlobberID         string
+	OwnerID                 string
+	OwnerSigninPublicKey    string
+	SetThirdPartyExtendable bool
+	FileOptions             uint16
+	FileOptionsParams       *FileOptionsParameters
+	Ticket                  string
+}
+
 // CreateAllocationForOwner creates a new allocation with the given options (txn: `storagesc.new_allocation_request`).
 //
 //   - owner is the client id of the owner of the allocation.
@@ -278,6 +295,60 @@ func WritePoolUnlock(allocID string, fee uint64) (hash string, nonce int64, err 
 		InputArgs: &req,
 	}
 	hash, _, nonce, _, err = transaction.SmartContractTxnValueFeeWithRetry(STORAGE_SCADDRESS, sn, 0, fee, true)
+	return
+}
+
+// // UpdateAllocationWithRequest sends an update request for an allocation (txn: `storagesc.update_allocation_request`)
+//
+//   - size is the size of the allocation.
+//   - extend is a flag indicating whether to extend the allocation.
+//   - allocationID is the id of the allocation.
+//   - lock is the lock value for the transaction (how much tokens to lock to the allocation, in SAS).
+//   - addBlobberId is the id of the blobber to add to the allocation.
+//   - addBlobberAuthTicket is the auth ticket of the blobber to add to the allocation, in case the blobber is restricted.
+//   - removeBlobberId is the id of the blobber to remove from the allocation.
+//   - setThirdPartyExtendable is a flag indicating whether the allocation can be extended by a third party.
+//   - fileOptionsParams is the file options parameters for the allocation, which control the usage permissions of the files in the allocation.
+//
+// returns the hash of the transaction, the nonce of the transaction and an error if any.
+func UpdateAllocationWithRequest(options UpdateAllocationOptions) (hash string, nonce int64, err error) {
+	updateAllocationRequest := make(map[string]interface{})
+	updateAllocationRequest["owner_id"] = options.OwnerID
+	updateAllocationRequest["owner_public_key"] = ""
+	updateAllocationRequest["id"] = options.AllocationID
+	updateAllocationRequest["size"] = options.Size
+	updateAllocationRequest["extend"] = options.Extend
+	updateAllocationRequest["add_blobber_id"] = options.AddBlobberID
+	updateAllocationRequest["add_blobber_auth_ticket"] = options.AddBlobberAuthTicket
+	updateAllocationRequest["remove_blobber_id"] = options.RemoveBlobberID
+	updateAllocationRequest["set_third_party_extendable"] = options.SetThirdPartyExtendable
+	updateAllocationRequest["owner_signing_public_key"] = options.OwnerSigninPublicKey
+	updateAllocationRequest["file_options_changed"], updateAllocationRequest["file_options"] = calculateAllocationFileOptions(options.FileOptions, options.FileOptionsParams)
+	updateAllocationRequest["auth_round_expiry"] = options.AuthRoundExpiry
+
+	if options.Ticket != "" {
+
+		type Ticket struct {
+			AllocationID  string `json:"allocation_id"`
+			UserID        string `json:"user_id"`
+			RoundExpiry   int64  `json:"round_expiry"`
+			OperationType string `json:"operation_type"`
+			Signature     string `json:"signature"`
+		}
+
+		ticketData := &Ticket{}
+		err := json.Unmarshal([]byte(options.Ticket), ticketData)
+		if err != nil {
+			return "", 0, errors.New("invalid_ticket", "invalid ticket")
+		}
+		updateAllocationRequest["update_ticket"] = ticketData
+	}
+
+	sn := transaction.SmartContractTxnData{
+		Name:      transaction.STORAGESC_UPDATE_ALLOCATION,
+		InputArgs: updateAllocationRequest,
+	}
+	hash, _, nonce, _, err = StorageSmartContractTxnValue(sn, options.Lock)
 	return
 }
 

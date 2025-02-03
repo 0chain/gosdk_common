@@ -1196,7 +1196,7 @@ func GetUpdateAllocationMinLock(
 }
 
 // calculateAllocationFileOptions calculates the FileOptions 16-bit mask given the user input
-func CalculateAllocationFileOptions(initial uint16, fop *FileOptionsParameters) (bool, uint16) {
+func calculateAllocationFileOptions(initial uint16, fop *FileOptionsParameters) (bool, uint16) {
 	if fop == nil {
 		return false, initial
 	}
