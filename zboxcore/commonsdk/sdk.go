@@ -54,21 +54,6 @@ type StatusCallback interface {
 	RepairCompleted(filesRepaired int)
 }
 
-var (
-	numBlockDownloads         = 100
-	networkWorkerTimerInHours = 1 //nolint:unused
-	singleClientMode          = false
-	shouldVerifyHash          = true
-)
-
-func SetSingleClietnMode(mode bool) {
-	singleClientMode = mode
-}
-
-func SetShouldVerifyHash(verify bool) {
-	shouldVerifyHash = verify
-}
-
 // GetVersion - returns version string
 func GetVersion() string {
 	return version.VERSIONSTR
@@ -1053,16 +1038,16 @@ func ResetAllocationStats(allocationId string) (string, int64, error) {
 func StorageSmartContractTxn(sn transaction.SmartContractTxnData) (
 	hash, out string, nonce int64, txn *transaction.Transaction, err error) {
 
-	return storageSmartContractTxnValue(sn, 0)
+	return StorageSmartContractTxnValue(sn, 0)
 }
 
 func storageSmartContractTxn(sn transaction.SmartContractTxnData) (
 	hash, out string, nonce int64, txn *transaction.Transaction, err error) {
 
-	return storageSmartContractTxnValue(sn, 0)
+	return StorageSmartContractTxnValue(sn, 0)
 }
 
-func storageSmartContractTxnValue(sn transaction.SmartContractTxnData, value uint64) (
+func StorageSmartContractTxnValue(sn transaction.SmartContractTxnData, value uint64) (
 	hash, out string, nonce int64, txn *transaction.Transaction, err error) {
 
 	// Fee is set during sdk initialization.

@@ -77,7 +77,7 @@ func CreateAllocationForOwner(
 		Name:      transaction.NEW_ALLOCATION_REQUEST,
 		InputArgs: allocationRequest,
 	}
-	hash, _, nonce, txn, err = storageSmartContractTxnValue(sn, lock)
+	hash, _, nonce, txn, err = StorageSmartContractTxnValue(sn, lock)
 	return
 }
 
@@ -109,7 +109,7 @@ func CreateFreeAllocation(marker string, value uint64) (string, int64, error) {
 		Name:      transaction.NEW_FREE_ALLOCATION,
 		InputArgs: input,
 	}
-	hash, _, n, _, err := storageSmartContractTxnValue(sn, value)
+	hash, _, n, _, err := StorageSmartContractTxnValue(sn, value)
 	return hash, n, err
 }
 
