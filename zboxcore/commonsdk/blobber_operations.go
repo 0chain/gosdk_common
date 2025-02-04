@@ -25,11 +25,13 @@ type UpdateAllocationOptions struct {
 	AddBlobberAuthTicket    string
 	RemoveBlobberID         string
 	OwnerID                 string
+	OwnerPublicKey          string
 	OwnerSigninPublicKey    string
 	SetThirdPartyExtendable bool
 	FileOptions             uint16
 	FileOptionsParams       *FileOptionsParameters
 	Ticket                  string
+	FileOptionsChanged      bool
 }
 
 // CreateAllocationForOwner creates a new allocation with the given options (txn: `storagesc.new_allocation_request`).
@@ -350,6 +352,35 @@ func UpdateAllocationWithRequest(options UpdateAllocationOptions) (hash string, 
 	}
 	hash, _, nonce, _, err = StorageSmartContractTxnValue(sn, options.Lock)
 	return
+}
+
+// TransferAllocation transfers the ownership of an allocation to a new owner. (txn: `storagesc.update_allocation_request`)
+//
+//   - allocationId is the id of the allocation.
+//   - newOwner is the client id of the new owner.
+//   - newOwnerPublicKey is the public key of the new owner.
+//
+// returns the hash of the transaction, the nonce of the transaction and an error if any.
+func TransferAllocation(options UpdateAllocationOptions) (string, int64, error) {
+	var allocationRequest = map[string]interface{}{
+		"id":                         options.AllocationID,
+		"owner_id":                   options.OwnerID,
+		"owner_public_key":           options.OwnerPublicKey,
+		"size":                       0,
+		"expiration_date":            0,
+		"update_terms":               false,
+		"add_blobber_id":             "",
+		"remove_blobber_id":          "",
+		"set_third_party_extendable": options.SetThirdPartyExtendable,
+		"file_options_changed":       false,
+		"file_options":               options.FileOptions,
+	}
+	var sn = transaction.SmartContractTxnData{
+		Name:      transaction.STORAGESC_UPDATE_ALLOCATION,
+		InputArgs: allocationRequest,
+	}
+	hash, _, n, _, err := StorageSmartContractTxn(sn)
+	return hash, n, err
 }
 
 func GenerateOwnerSigningKey(ownerPublicKey, ownerID string) (ed25519.PrivateKey, error) {
