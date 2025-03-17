@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 
-	coreHttp "github.com/0chain/gosdk/core/client"
-	"github.com/0chain/gosdk/core/common"
+	coreHttp "github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/core/common"
 
-	"github.com/0chain/gosdk/zcncore"
+	"github.com/0chain/gosdk_common/zcncore"
 )
 
 const (
