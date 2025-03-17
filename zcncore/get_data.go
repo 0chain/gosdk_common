@@ -137,8 +137,8 @@ func SetGeneralWalletInfo(jsonWallet, sigScheme string) error {
 
 // RegisterZauthServer registers zauth server callbacks for signing operations. Should be used for split key mode.
 func RegisterZauthServer(serverAddr string) {
-	sys.SetAuthorize(ZauthSignTxn(serverAddr))
-	sys.SetAuthCommon(ZauthAuthCommon(serverAddr))
+	sys.SetAuthorize(client.ZauthSignTxn(serverAddr))
+	sys.SetAuthCommon(client.ZauthAuthCommon(serverAddr))
 }
 
 // SetAuthUrl will be called by app to set zauth URL to SDK.
@@ -214,7 +214,7 @@ func withParams(uri string, params Params) string { //nolint:unused
 //		return
 //	}
 //
-//	return coreHttp.MakeSCRestAPICall(StorageSmartContractAddress, STORAGE_GET_BLOBBER_SNAPSHOT, Params{
+//	return coreHttp.MakeSCRestAPICallToSharder(StorageSmartContractAddress, STORAGE_GET_BLOBBER_SNAPSHOT, Params{
 //		"round":  strconv.FormatInt(round, 10),
 //		"limit":  strconv.FormatInt(limit, 10),
 //		"offset": strconv.FormatInt(offset, 10),
@@ -374,4 +374,51 @@ func GetUserLockedTotal(clientID string) (int64, error) {
 	} else {
 		return 0, err
 	}
+}
+
+func IsHardforkActivated(name string) (bool, error) {
+	res, err := screstapi.MakeSCRestAPICall(MinerSmartContractAddress, GET_HARDFORK, Params{
+		"name": name,
+	})
+	if err != nil {
+		return false, fmt.Errorf("error getting hardfork status: %v", err)
+	}
+
+	var result map[string]string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return false, fmt.Errorf("error unmarshalling hardfork status: %v", err)
+	}
+
+	roundString, ok := result["round"]
+	if !ok {
+		return false, errors.New("hardfork not found")
+	}
+
+	round, err := strconv.ParseInt(roundString, 10, 64)
+	if err != nil {
+		return false, fmt.Errorf("error parsing round: %v", err)
+	}
+
+	currentRound, err := GetCurrentRound()
+	if err != nil {
+		return false, fmt.Errorf("error getting current round: %v", err)
+	}
+
+	return currentRound >= round, nil
+}
+
+func GetCurrentRound() (int64, error) {
+	res, err := screstapi.MakeSCRestAPICall("", GET_CURRENT_ROUND, nil, "")
+	if err != nil {
+		return 0, err
+	}
+
+	var round int64
+	err = json.Unmarshal(res, &round)
+	if err != nil {
+		return 0, fmt.Errorf("error getting current round : %v", err)
+	}
+
+	return round, nil
 }

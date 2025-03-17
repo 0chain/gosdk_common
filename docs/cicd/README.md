@@ -19,7 +19,7 @@
 ## Manual Trigger
 
 ### For 0proxy from gosdk repo
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-0proxy-build.png "UML diagram for 0proxy")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-0proxy-build.png "UML diagram for 0proxy")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -28,11 +28,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/0proxy repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-0proxy.png "WorkFlow diagram for 0proxy")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-0proxy.png "WorkFlow diagram for 0proxy")
 
 ----
 ### For 0box from gosdk repo
-![0box](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-0box-build.png "UML diagram for 0box")
+![0box](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-0box-build.png "UML diagram for 0box")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -41,11 +41,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/0box repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0box](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-0box.png "WorkFlow diagram for 0box")
+![0box](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-0box.png "WorkFlow diagram for 0box")
 
 ----
 ### For 0dns from gosdk repo
-![0dns](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-0dns-build.png "UML diagram for 0dns")
+![0dns](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-0dns-build.png "UML diagram for 0dns")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -54,11 +54,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/0dns repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0dns](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-0dns.png "WorkFlow diagram for 0dns")
+![0dns](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-0dns.png "WorkFlow diagram for 0dns")
 
 ----
 ### For 0block from gosdk repo
-![0block](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-0block-build.png "UML diagram for 0block")
+![0block](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-0block-build.png "UML diagram for 0block")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -67,11 +67,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/0block repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0block](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-0block.png "WorkFlow diagram for 0block")
+![0block](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-0block.png "WorkFlow diagram for 0block")
 
 ----
 ### For 0search from gosdk repo
-![0search](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-0search-build.png "UML diagram for 0search")
+![0search](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-0search-build.png "UML diagram for 0search")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -80,11 +80,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/0search repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0search](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-0search.png "WorkFlow diagram for 0search")
+![0search](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-0search.png "WorkFlow diagram for 0search")
 
 ----
 ### For blobber from gosdk repo
-![blobber](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for blobber")
+![blobber](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for blobber")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -93,12 +93,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/blobber repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input no/yes for latest tag(Recommended/Default to be "no")<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![blobber](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for blobber")
+![blobber](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for blobber")
 
 ----
 
 ### For zboxcli from gosdk repo
-![zboxcli](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zboxcli")
+![zboxcli](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zboxcli")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -108,11 +108,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input yes For Building With Tag v0.0.0 from master & v1.1.1 from staging<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the current release version for zboxcli (Input Tag Example - v1.2.2)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![zboxcli](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zboxcli")
+![zboxcli](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zboxcli")
 
 ----
 ### For zboxmobile from gosdk repo
-![zboxmobile](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zboxmobile")
+![zboxmobile](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zboxmobile")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -122,11 +122,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input yes For Building With Tag v0.0.0 from master & v1.1.1 from staging<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the current release version for zboxmobile(Input Tag Example - v1.2.2)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![zboxmobile](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zboxmobile")
+![zboxmobile](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zboxmobile")
 
 ----
 ### For zwalletcli from gosdk repo
-![zwalletcli](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zwalletcli")
+![zwalletcli](https://github.com/0chain/gosdk/blob/master/docs/cicd/trigg-blobber-build.png "UML diagram for zwalletcli")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -136,13 +136,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input yes For Building With Tag v0.0.0 from master & v1.1.1 from staging<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the current release version for zwalletcli(Input Tag Example - v1.2.2)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![zwalletcli](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zwalletcli")
+![zwalletcli](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-blobber.png "WorkFlow diagram for zwalletcli")
 
 ----
 ## Auto Trigger
 
 ### For production gosdk release from gosdk repo
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/build-prod-auto.png "UML diagram for Production")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/build-prod-auto.png "UML diagram for Production")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -151,10 +151,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/gosdk repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input 'yes' for creating release with tag v0.0.0 & with current release version. If input is 'yes' & branch is 'master', it will also trigger other repositories build with tag 'latest'. If input is 'no', it will only create the release of gosdk with current release version.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-prod.png "WorkFlow diagram for Production")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-prod.png "WorkFlow diagram for Production")
 
 ### For staging gosdk release from gosdk repo
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/build-stage-auto.png "UML diagram for Staging")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/build-stage-auto.png "UML diagram for Staging")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Steps are as follows:-<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the gosdk repository.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Click on the Actions to choose the workflow to run.<br />
@@ -163,4 +163,4 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input the branch of 0chain/gosdk repository for creating build.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: Input 'yes' for creating release with tag v1.1.1 & with current release version. If input is 'yes' & branch is 'staging', it will also trigger other repositories build with tag 'staging-commit'. If input is 'no', it will only create the release of gosdk with current release version.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Finally click on the Run Workflow.
-![0proxy](https://github.com/0chain/gosdk_common/blob/master/docs/cicd/workflow-stage.png "WorkFlow diagram for Staging")
+![0proxy](https://github.com/0chain/gosdk/blob/master/docs/cicd/workflow-stage.png "WorkFlow diagram for Staging")

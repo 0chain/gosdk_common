@@ -3,21 +3,20 @@ package zcnbridge
 import (
 	"encoding/json"
 	"fmt"
+	coreClient "github.com/0chain/gosdk/core/client"
 	"io"
 	"math"
 	"net/http"
 	"strings"
 	"sync"
 
-	coreClient "github.com/0chain/gosdk_common/core/client"
-
-	"github.com/0chain/gosdk_common/core/common"
-	"github.com/0chain/gosdk_common/zcnbridge/errors"
-	"github.com/0chain/gosdk_common/zcnbridge/ethereum"
-	h "github.com/0chain/gosdk_common/zcnbridge/http"
-	"github.com/0chain/gosdk_common/zcnbridge/log"
-	"github.com/0chain/gosdk_common/zcnbridge/wallet"
-	"github.com/0chain/gosdk_common/zcnbridge/zcnsc"
+	"github.com/0chain/gosdk/core/common"
+	"github.com/0chain/gosdk/zcnbridge/errors"
+	"github.com/0chain/gosdk/zcnbridge/ethereum"
+	h "github.com/0chain/gosdk/zcnbridge/http"
+	"github.com/0chain/gosdk/zcnbridge/log"
+	"github.com/0chain/gosdk/zcnbridge/wallet"
+	"github.com/0chain/gosdk/zcnbridge/zcnsc"
 	"go.uber.org/zap"
 )
 

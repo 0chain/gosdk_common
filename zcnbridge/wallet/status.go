@@ -7,7 +7,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/0chain/gosdk_common/zcncore"
+	"github.com/0chain/gosdk/zcncore"
 )
 
 // ZCNStatus represents the status of a ZCN operation.
