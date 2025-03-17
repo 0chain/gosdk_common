@@ -3,14 +3,15 @@ package authorizer
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/0chain/gosdk/core/client"
-	"github.com/0chain/gosdk/core/conf"
-	"github.com/0chain/gosdk/core/zcncrypto"
 
-	"github.com/0chain/gosdk/zcnbridge"
+	"github.com/0chain/gosdk_common/core/client"
+	"github.com/0chain/gosdk_common/core/conf"
+	"github.com/0chain/gosdk_common/core/zcncrypto"
 
-	"github.com/0chain/gosdk/core/encryption"
-	"github.com/0chain/gosdk/zcnbridge/errors"
+	"github.com/0chain/gosdk_common/zcnbridge"
+
+	"github.com/0chain/gosdk_common/core/encryption"
+	"github.com/0chain/gosdk_common/zcnbridge/errors"
 )
 
 type ProofOfBurn struct {
