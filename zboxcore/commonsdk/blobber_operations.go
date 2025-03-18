@@ -50,7 +50,7 @@ type UpdateAllocationOptions struct {
 //
 // returns the hash of the transaction, the nonce of the transaction, the transaction object and an error if any.
 func CreateAllocationForOwner(
-	owner, ownerpublickey string,
+	owner, ownerpublickey string, ownerSigningPublicKey string,
 	datashards, parityshards int, size int64,
 	readPrice, writePrice PriceRange,
 	lock uint64, preferredBlobberIds, blobberAuthTickets []string, thirdPartyExtendable, IsEnterprise, force bool, fileOptionsParams *FileOptionsParameters, authRoundExpiry int64,
