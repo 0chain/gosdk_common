@@ -35,6 +35,26 @@ type BlobberAllocationStats struct {
 	} `json:"Terms"`
 }
 
+// ConsolidatedFileMeta represents the file meta data.
+type ConsolidatedFileMeta struct {
+	Name            string
+	Type            string
+	Path            string
+	LookupHash      string
+	Hash            string
+	MimeType        string
+	Size            int64
+	NumBlocks       int64
+	ActualFileSize  int64
+	ActualNumBlocks int64
+	EncryptedKey    string
+
+	ActualThumbnailSize int64
+	ActualThumbnailHash string
+
+	Collaborators []fileref.Collaborator
+}
+
 type ConsolidatedFileMetaByName struct {
 	Name                string
 	Type                string
