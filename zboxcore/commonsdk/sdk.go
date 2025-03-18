@@ -341,7 +341,7 @@ type Blobber struct {
 type UpdateBlobber struct {
 	ID                       common.Key                          `json:"id"`
 	BaseURL                  *string                             `json:"url,omitempty"`
-	Terms                    *commonsdk.UpdateTerms              `json:"terms,omitempty"`
+	Terms                    *UpdateTerms                        `json:"terms,omitempty"`
 	Capacity                 *common.Size                        `json:"capacity,omitempty"`
 	Allocated                *common.Size                        `json:"allocated,omitempty"`
 	LastHealthCheck          *common.Timestamp                   `json:"last_health_check,omitempty"`
