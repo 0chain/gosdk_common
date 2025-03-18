@@ -29,7 +29,6 @@ const MINERSC_SCADDRESS = "6dba10422e368813802877a85039d3985d96760ed844092319743
 const ZCNSC_SCADDRESS = "6dba10422e368813802877a85039d3985d96760ed844092319743fb3a76712e0"
 
 var sdkNotInitialized = errors.New("sdk_not_initialized", "SDK is not initialised")
-var allocationNotFound = errors.New("couldnt_find_allocation", "Couldn't find the allocation required for update")
 
 const (
 	OpUpload            int = 0
