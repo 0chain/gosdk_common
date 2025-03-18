@@ -5,7 +5,56 @@ import (
 
 	"github.com/0chain/gosdk_common/core/common"
 	"github.com/0chain/gosdk_common/zboxcore/blockchain"
+	"github.com/0chain/gosdk_common/zboxcore/fileref"
 )
+
+// BlobberAllocationStats represents the blobber allocation statistics.
+type BlobberAllocationStats struct {
+	BlobberID        string
+	BlobberURL       string
+	ID               string `json:"ID"`
+	Tx               string `json:"Tx"`
+	TotalSize        int64  `json:"TotalSize"`
+	UsedSize         int    `json:"UsedSize"`
+	OwnerID          string `json:"OwnerID"`
+	OwnerPublicKey   string `json:"OwnerPublicKey"`
+	Expiration       int    `json:"Expiration"`
+	AllocationRoot   string `json:"AllocationRoot"`
+	BlobberSize      int    `json:"BlobberSize"`
+	BlobberSizeUsed  int    `json:"BlobberSizeUsed"`
+	LatestRedeemedWM string `json:"LatestRedeemedWM"`
+	IsRedeemRequired bool   `json:"IsRedeemRequired"`
+	CleanedUp        bool   `json:"CleanedUp"`
+	Finalized        bool   `json:"Finalized"`
+	Terms            []struct {
+		ID           int    `json:"ID"`
+		BlobberID    string `json:"BlobberID"`
+		AllocationID string `json:"AllocationID"`
+		ReadPrice    int    `json:"ReadPrice"`
+		WritePrice   int    `json:"WritePrice"`
+	} `json:"Terms"`
+}
+
+type ConsolidatedFileMetaByName struct {
+	Name                string
+	Type                string
+	Path                string
+	LookupHash          string
+	Hash                string
+	MimeType            string
+	Size                int64
+	NumBlocks           int64
+	ActualFileSize      int64
+	ActualNumBlocks     int64
+	EncryptedKey        string
+	FileMetaHash        string
+	ThumbnailHash       string
+	ActualThumbnailSize int64
+	ActualThumbnailHash string
+	Collaborators       []fileref.Collaborator
+	CreatedAt           common.Timestamp
+	UpdatedAt           common.Timestamp
+}
 
 // Terms represents Blobber terms. A Blobber can update its terms,
 // but any existing offer will use terms of offer signing time.
