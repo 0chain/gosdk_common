@@ -341,7 +341,7 @@ type Blobber struct {
 type UpdateBlobber struct {
 	ID                       common.Key                          `json:"id"`
 	BaseURL                  *string                             `json:"url,omitempty"`
-	Terms                    *UpdateTerms                        `json:"terms,omitempty"`
+	Terms                    *commonsdk.UpdateTerms              `json:"terms,omitempty"`
 	Capacity                 *common.Size                        `json:"capacity,omitempty"`
 	Allocated                *common.Size                        `json:"allocated,omitempty"`
 	LastHealthCheck          *common.Timestamp                   `json:"last_health_check,omitempty"`
@@ -357,6 +357,7 @@ type UpdateBlobber struct {
 	IsRestricted             *bool                               `json:"is_restricted,omitempty"`
 	StorageVersion           *int                                `json:"storage_version,omitempty"`
 	DelegateWallet           *string                             `json:"delegate_wallet,omitempty"`
+	ManagingWallet           *string                             `json:"managing_wallet,omitempty"`
 }
 
 // ResetBlobberStatsDto represents blobber stats reset request.
