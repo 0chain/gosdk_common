@@ -22,7 +22,7 @@ jobs:
 
   release:
     name: sdk-release
-    runs-on: [self-hosted, build]
+    runs-on: [self-hosted, arc-runner]
     steps:
       - name: start to create pr
         run: |
@@ -36,7 +36,7 @@ jobs:
       matrix:
         repo: [0box, 0dns, zwalletcli, zboxcli, blobber, zs3server, s3-migration, token_bridge_authserver ]
     needs: [ release ]
-    runs-on: [self-hosted, build]
+    runs-on: [self-hosted, arc-runner]
     steps:
       - name: Extract branch or version name
         shell: bash

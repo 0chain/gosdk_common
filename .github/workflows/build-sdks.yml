@@ -260,7 +260,7 @@ jobs:
 
   build-windows:
     name: Build-windows
-    runs-on:  [self-hosted, arc-runner]
+    runs-on: [self-hosted, arc-runner]
 
     steps:
       - name: Checkout code

@@ -13,7 +13,7 @@ env:
 jobs:
   golangci:
     name: "lint"
-    runs-on: [ arc-runner ]
+    runs-on: [self-hosted, arc-runner]
     steps:
       - name: Install Packages
         run: |
@@ -36,7 +36,7 @@ jobs:
           only-new-issues: true
 
   go-test:
-    runs-on: [ arc-runner ]
+    runs-on: [self-hosted, arc-runner]
     steps:
       - uses: actions/checkout@v2
 
@@ -59,7 +59,7 @@ jobs:
 
   system-test:
     needs: go-test
-    runs-on: [ tests-suite ]
+    runs-on: [self-hosted, arc-runner]
     steps:
       - name: "Get current PR"
         uses: jwalton/gh-find-current-pr@v1
@@ -157,7 +157,7 @@ jobs:
           github_token: ${{ github.token }}
 
   wasm-test:
-    runs-on: [self-hosted, build]
+    runs-on: [self-hosted, arc-runner]
     env:
       GOOS: js
       GOARCH: wasm
